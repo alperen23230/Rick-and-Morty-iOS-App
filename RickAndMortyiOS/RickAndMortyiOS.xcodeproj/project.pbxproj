@@ -20,6 +20,13 @@
 		8408155E254D8C6B003655D2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8408155D254D8C6B003655D2 /* Constants.swift */; };
 		84081563254D8F11003655D2 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84081562254D8F11003655D2 /* Colors.xcassets */; };
 		84081569254D8FDE003655D2 /* UIColor+CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84081568254D8FDE003655D2 /* UIColor+CustomColor.swift */; };
+		842D8C3525612F5E007AD847 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D8C3425612F5E007AD847 /* NetworkService.swift */; };
+		8487E6EB25614400008FB8C3 /* PageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8487E6EA25614400008FB8C3 /* PageInfo.swift */; };
+		8487E6F3256144C9008FB8C3 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8487E6F2256144C9008FB8C3 /* Location.swift */; };
+		8487E6F8256146B2008FB8C3 /* GeneralAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8487E6F7256146B2008FB8C3 /* GeneralAPIResponse.swift */; };
+		8487E6FD256147EF008FB8C3 /* NetworkService+Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8487E6FC256147EF008FB8C3 /* NetworkService+Locations.swift */; };
+		84ED0EE325612B23009CDC87 /* NetworkRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0EE225612B23009CDC87 /* NetworkRoutes.swift */; };
+		84ED0EEF25612CC1009CDC87 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0EEE25612CC1009CDC87 /* APIError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +66,13 @@
 		8408155D254D8C6B003655D2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		84081562254D8F11003655D2 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		84081568254D8FDE003655D2 /* UIColor+CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColor.swift"; sourceTree = "<group>"; };
+		842D8C3425612F5E007AD847 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		8487E6EA25614400008FB8C3 /* PageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageInfo.swift; sourceTree = "<group>"; };
+		8487E6F2256144C9008FB8C3 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		8487E6F7256146B2008FB8C3 /* GeneralAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAPIResponse.swift; sourceTree = "<group>"; };
+		8487E6FC256147EF008FB8C3 /* NetworkService+Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+Locations.swift"; sourceTree = "<group>"; };
+		84ED0EE225612B23009CDC87 /* NetworkRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRoutes.swift; sourceTree = "<group>"; };
+		84ED0EEE25612CC1009CDC87 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +154,8 @@
 		84081536254D8885003655D2 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				84ED0EEC25612C9B009CDC87 /* Models */,
+				84ED0EE125612AD8009CDC87 /* Networking */,
 				84081567254D8FC8003655D2 /* Extensions */,
 				8408155C254D8C36003655D2 /* Utilities */,
 			);
@@ -195,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				84081557254D8B3F003655D2 /* LocationsViewController.swift */,
+				8487E6FC256147EF008FB8C3 /* NetworkService+Locations.swift */,
 			);
 			path = Locations;
 			sourceTree = "<group>";
@@ -213,6 +230,58 @@
 				84081568254D8FDE003655D2 /* UIColor+CustomColor.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8487E6E9256143CE008FB8C3 /* Network Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				8487E6EA25614400008FB8C3 /* PageInfo.swift */,
+				8487E6F2256144C9008FB8C3 /* Location.swift */,
+				8487E6F7256146B2008FB8C3 /* GeneralAPIResponse.swift */,
+			);
+			path = "Network Data Models";
+			sourceTree = "<group>";
+		};
+		84ED0EE125612AD8009CDC87 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				84ED0EEB25612BF3009CDC87 /* NetworkService */,
+				84ED0EEA25612BE9009CDC87 /* Route */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		84ED0EEA25612BE9009CDC87 /* Route */ = {
+			isa = PBXGroup;
+			children = (
+				84ED0EE225612B23009CDC87 /* NetworkRoutes.swift */,
+			);
+			path = Route;
+			sourceTree = "<group>";
+		};
+		84ED0EEB25612BF3009CDC87 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				842D8C3425612F5E007AD847 /* NetworkService.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		84ED0EEC25612C9B009CDC87 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8487E6E9256143CE008FB8C3 /* Network Data Models */,
+				84ED0EED25612CA5009CDC87 /* Error Models */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		84ED0EED25612CA5009CDC87 /* Error Models */ = {
+			isa = PBXGroup;
+			children = (
+				84ED0EEE25612CC1009CDC87 /* APIError.swift */,
+			);
+			path = "Error Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,8 +414,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				842D8C3525612F5E007AD847 /* NetworkService.swift in Sources */,
+				84ED0EE325612B23009CDC87 /* NetworkRoutes.swift in Sources */,
+				8487E6EB25614400008FB8C3 /* PageInfo.swift in Sources */,
 				84081558254D8B3F003655D2 /* LocationsViewController.swift in Sources */,
 				84081569254D8FDE003655D2 /* UIColor+CustomColor.swift in Sources */,
+				84ED0EEF25612CC1009CDC87 /* APIError.swift in Sources */,
+				8487E6FD256147EF008FB8C3 /* NetworkService+Locations.swift in Sources */,
+				8487E6F8256146B2008FB8C3 /* GeneralAPIResponse.swift in Sources */,
+				8487E6F3256144C9008FB8C3 /* Location.swift in Sources */,
 				84081553254D8B2F003655D2 /* EpisodesViewController.swift in Sources */,
 				840814F8254D869C003655D2 /* AppDelegate.swift in Sources */,
 				840814FA254D869C003655D2 /* SceneDelegate.swift in Sources */,

@@ -9,9 +9,9 @@ import UIKit
 
 class MainAppTabBarViewController: UITabBarController {
     
-    let locationsVC = LocationsViewController()
-    let episodesVC = EpisodesViewController()
-    let charactersVC = CharactersViewController()
+    let locationsVC = UINavigationController(rootViewController: LocationsViewController())
+    let episodesVC = UINavigationController(rootViewController: EpisodesViewController())
+    let charactersVC = UINavigationController(rootViewController: CharactersViewController())
 
     override func viewDidLoad() {
         super.viewDidLoad()
