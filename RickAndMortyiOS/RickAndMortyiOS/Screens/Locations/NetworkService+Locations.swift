@@ -9,11 +9,12 @@ import Foundation
 import Combine
 
 extension NetworkService {
-    func getLocations(for page: Int) -> Future<GeneralAPIResponse<Location>, APIError> {
+    func getLocations(for page: Int, filterByName: String) -> Future<GeneralAPIResponse<Location>, APIError> {
         NetworkRoutes.sharedInstance.urlComponent.path = NetworkRoutes.Path.getLocations.rawValue
         
         NetworkRoutes.sharedInstance.urlComponent.queryItems = [
-            URLQueryItem(name: "page", value: String(page))
+            URLQueryItem(name: "page", value: String(page)),
+            URLQueryItem(name: "name", value: filterByName)
         ]
        
         var urlRequest = URLRequest(url: NetworkRoutes.sharedInstance.urlComponent.url!)

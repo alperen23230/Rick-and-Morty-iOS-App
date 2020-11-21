@@ -21,6 +21,9 @@
 		84081563254D8F11003655D2 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84081562254D8F11003655D2 /* Colors.xcassets */; };
 		84081569254D8FDE003655D2 /* UIColor+CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84081568254D8FDE003655D2 /* UIColor+CustomColor.swift */; };
 		842D8C3525612F5E007AD847 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D8C3425612F5E007AD847 /* NetworkService.swift */; };
+		84421C502569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84421C4F2569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift */; };
+		84421C58256958C000C21ED8 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84421C57256958C000C21ED8 /* UIView+AutoLayout.swift */; };
+		84421C5D256962C000C21ED8 /* LocationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84421C5C256962C000C21ED8 /* LocationsViewModel.swift */; };
 		8487E6EB25614400008FB8C3 /* PageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8487E6EA25614400008FB8C3 /* PageInfo.swift */; };
 		8487E6F3256144C9008FB8C3 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8487E6F2256144C9008FB8C3 /* Location.swift */; };
 		8487E6F8256146B2008FB8C3 /* GeneralAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8487E6F7256146B2008FB8C3 /* GeneralAPIResponse.swift */; };
@@ -67,6 +70,9 @@
 		84081562254D8F11003655D2 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		84081568254D8FDE003655D2 /* UIColor+CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColor.swift"; sourceTree = "<group>"; };
 		842D8C3425612F5E007AD847 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		84421C4F2569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutPropertyWrapper.swift; sourceTree = "<group>"; };
+		84421C57256958C000C21ED8 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
+		84421C5C256962C000C21ED8 /* LocationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewModel.swift; sourceTree = "<group>"; };
 		8487E6EA25614400008FB8C3 /* PageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageInfo.swift; sourceTree = "<group>"; };
 		8487E6F2256144C9008FB8C3 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		8487E6F7256146B2008FB8C3 /* GeneralAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAPIResponse.swift; sourceTree = "<group>"; };
@@ -154,6 +160,7 @@
 		84081536254D8885003655D2 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				84421C4E2569585F00C21ED8 /* Property Wrappers */,
 				84ED0EEC25612C9B009CDC87 /* Models */,
 				84ED0EE125612AD8009CDC87 /* Networking */,
 				84081567254D8FC8003655D2 /* Extensions */,
@@ -212,6 +219,7 @@
 			children = (
 				84081557254D8B3F003655D2 /* LocationsViewController.swift */,
 				8487E6FC256147EF008FB8C3 /* NetworkService+Locations.swift */,
+				84421C5C256962C000C21ED8 /* LocationsViewModel.swift */,
 			);
 			path = Locations;
 			sourceTree = "<group>";
@@ -228,8 +236,17 @@
 			isa = PBXGroup;
 			children = (
 				84081568254D8FDE003655D2 /* UIColor+CustomColor.swift */,
+				84421C57256958C000C21ED8 /* UIView+AutoLayout.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		84421C4E2569585F00C21ED8 /* Property Wrappers */ = {
+			isa = PBXGroup;
+			children = (
+				84421C4F2569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift */,
+			);
+			path = "Property Wrappers";
 			sourceTree = "<group>";
 		};
 		8487E6E9256143CE008FB8C3 /* Network Data Models */ = {
@@ -415,16 +432,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				842D8C3525612F5E007AD847 /* NetworkService.swift in Sources */,
+				84421C58256958C000C21ED8 /* UIView+AutoLayout.swift in Sources */,
 				84ED0EE325612B23009CDC87 /* NetworkRoutes.swift in Sources */,
 				8487E6EB25614400008FB8C3 /* PageInfo.swift in Sources */,
 				84081558254D8B3F003655D2 /* LocationsViewController.swift in Sources */,
 				84081569254D8FDE003655D2 /* UIColor+CustomColor.swift in Sources */,
 				84ED0EEF25612CC1009CDC87 /* APIError.swift in Sources */,
 				8487E6FD256147EF008FB8C3 /* NetworkService+Locations.swift in Sources */,
+				84421C502569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift in Sources */,
 				8487E6F8256146B2008FB8C3 /* GeneralAPIResponse.swift in Sources */,
 				8487E6F3256144C9008FB8C3 /* Location.swift in Sources */,
 				84081553254D8B2F003655D2 /* EpisodesViewController.swift in Sources */,
 				840814F8254D869C003655D2 /* AppDelegate.swift in Sources */,
+				84421C5D256962C000C21ED8 /* LocationsViewModel.swift in Sources */,
 				840814FA254D869C003655D2 /* SceneDelegate.swift in Sources */,
 				8408154E254D8B1D003655D2 /* CharactersViewController.swift in Sources */,
 				8408153B254D89DE003655D2 /* MainAppTabBarViewController.swift in Sources */,
