@@ -20,5 +20,6 @@ struct NetworkRoutes {
     
     enum Path: String {
         case getLocations = "/api/location"
+        case getEpisodes = "/api/episode/"
     }
 }

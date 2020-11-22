@@ -6,28 +6,33 @@
 //
 
 import UIKit
+import Resolver
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        setupRegistrations()
         setNavBar()
         return true
     }
     
     func setNavBar() {
+        
         let appearance = UINavigationBarAppearance()
         
         appearance.titleTextAttributes = [.foregroundColor: UIColor.rickBlue]
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.rickBlue]
         
+        UINavigationBar.appearance().prefersLargeTitles = true
         UINavigationBar.appearance().tintColor = UIColor.rickBlue
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        
     }
+    
+    
     
     // MARK: UISceneSession Lifecycle
     
@@ -44,5 +49,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
+}
+
+extension AppDelegate: Resolving {
+    func setupRegistrations(){
+        resolver.register { LocationsViewModel() }
+        resolver.register { EpisodesViewModel() }
+    }
 }
 

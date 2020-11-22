@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,10 @@
 		84421C502569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84421C4F2569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift */; };
 		84421C58256958C000C21ED8 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84421C57256958C000C21ED8 /* UIView+AutoLayout.swift */; };
 		84421C5D256962C000C21ED8 /* LocationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84421C5C256962C000C21ED8 /* LocationsViewModel.swift */; };
+		847702D9256AA485001CA8EE /* NetworkService+Episodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847702D8256AA485001CA8EE /* NetworkService+Episodes.swift */; };
+		847702DE256AA4B9001CA8EE /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847702DD256AA4B9001CA8EE /* Episode.swift */; };
+		847702E3256AA690001CA8EE /* EpisodesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847702E2256AA690001CA8EE /* EpisodesViewModel.swift */; };
+		847702F1256AB03A001CA8EE /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 847702F0256AB03A001CA8EE /* Resolver */; };
 		8487E6EB25614400008FB8C3 /* PageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8487E6EA25614400008FB8C3 /* PageInfo.swift */; };
 		8487E6F3256144C9008FB8C3 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8487E6F2256144C9008FB8C3 /* Location.swift */; };
 		8487E6F8256146B2008FB8C3 /* GeneralAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8487E6F7256146B2008FB8C3 /* GeneralAPIResponse.swift */; };
@@ -73,6 +77,9 @@
 		84421C4F2569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutPropertyWrapper.swift; sourceTree = "<group>"; };
 		84421C57256958C000C21ED8 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		84421C5C256962C000C21ED8 /* LocationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewModel.swift; sourceTree = "<group>"; };
+		847702D8256AA485001CA8EE /* NetworkService+Episodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+Episodes.swift"; sourceTree = "<group>"; };
+		847702DD256AA4B9001CA8EE /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
+		847702E2256AA690001CA8EE /* EpisodesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewModel.swift; sourceTree = "<group>"; };
 		8487E6EA25614400008FB8C3 /* PageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageInfo.swift; sourceTree = "<group>"; };
 		8487E6F2256144C9008FB8C3 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		8487E6F7256146B2008FB8C3 /* GeneralAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAPIResponse.swift; sourceTree = "<group>"; };
@@ -86,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				847702F1256AB03A001CA8EE /* Resolver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +218,8 @@
 			isa = PBXGroup;
 			children = (
 				84081552254D8B2F003655D2 /* EpisodesViewController.swift */,
+				847702D8256AA485001CA8EE /* NetworkService+Episodes.swift */,
+				847702E2256AA690001CA8EE /* EpisodesViewModel.swift */,
 			);
 			path = Episodes;
 			sourceTree = "<group>";
@@ -255,6 +265,7 @@
 				8487E6EA25614400008FB8C3 /* PageInfo.swift */,
 				8487E6F2256144C9008FB8C3 /* Location.swift */,
 				8487E6F7256146B2008FB8C3 /* GeneralAPIResponse.swift */,
+				847702DD256AA4B9001CA8EE /* Episode.swift */,
 			);
 			path = "Network Data Models";
 			sourceTree = "<group>";
@@ -317,6 +328,9 @@
 			dependencies = (
 			);
 			name = RickAndMortyiOS;
+			packageProductDependencies = (
+				847702F0256AB03A001CA8EE /* Resolver */,
+			);
 			productName = RickAndMortyiOS;
 			productReference = 840814F4254D869C003655D2 /* RickAndMortyiOS.app */;
 			productType = "com.apple.product-type.application";
@@ -388,6 +402,9 @@
 				Base,
 			);
 			mainGroup = 840814EB254D869B003655D2;
+			packageReferences = (
+				847702EF256AB03A001CA8EE /* XCRemoteSwiftPackageReference "Resolver" */,
+			);
 			productRefGroup = 840814F5254D869C003655D2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -444,11 +461,14 @@
 				8487E6F3256144C9008FB8C3 /* Location.swift in Sources */,
 				84081553254D8B2F003655D2 /* EpisodesViewController.swift in Sources */,
 				840814F8254D869C003655D2 /* AppDelegate.swift in Sources */,
+				847702DE256AA4B9001CA8EE /* Episode.swift in Sources */,
+				847702D9256AA485001CA8EE /* NetworkService+Episodes.swift in Sources */,
 				84421C5D256962C000C21ED8 /* LocationsViewModel.swift in Sources */,
 				840814FA254D869C003655D2 /* SceneDelegate.swift in Sources */,
 				8408154E254D8B1D003655D2 /* CharactersViewController.swift in Sources */,
 				8408153B254D89DE003655D2 /* MainAppTabBarViewController.swift in Sources */,
 				8408155E254D8C6B003655D2 /* Constants.swift in Sources */,
+				847702E3256AA690001CA8EE /* EpisodesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -775,6 +795,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		847702EF256AB03A001CA8EE /* XCRemoteSwiftPackageReference "Resolver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Resolver";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		847702F0256AB03A001CA8EE /* Resolver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 847702EF256AB03A001CA8EE /* XCRemoteSwiftPackageReference "Resolver" */;
+			productName = Resolver;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 840814EC254D869B003655D2 /* Project object */;
 }

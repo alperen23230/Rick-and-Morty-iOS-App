@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Resolver
 
 class LocationsViewController: UIViewController {
     
@@ -17,21 +18,22 @@ class LocationsViewController: UIViewController {
     private var dataSource: UITableViewDiffableDataSource<Section, Location>!
     private var cancellables = Set<AnyCancellable>()
     
-    private var locationsViewModel: LocationsViewModel!
-    
+    @LazyInjected private var locationsViewModel: LocationsViewModel
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar()
         configureTableView()
         configureDataSource()
-        configureViewModel()
+        setViewModelListeners()
         configureSearchController()
         setSearchControllerListeners()
         locationsViewModel.getLocations()
+    
     }
     
     private func configureSearchController(){
+        searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search a Location"
         searchController.obscuresBackgroundDuringPresentation = false
     }
@@ -44,27 +46,28 @@ class LocationsViewController: UIViewController {
             .debounce(for: 0.3, scheduler: DispatchQueue.main)
             .removeDuplicates()
             .sink {[weak self] (searchQuery) in
-                self?.locationsViewModel.currentSearchQuery = searchQuery ?? ""
-                self?.locationsViewModel.canLoadMorePages = true
-                self?.locationsViewModel.currentPage = 1
-                self?.locationsViewModel.locationsSubject.value.removeAll()
-                self?.locationsViewModel.getLocations()
+                self?.getLocationsBySearchQuery(searchQuery: searchQuery ?? "")
             }
             .store(in: &cancellables)
     }
     
     private func configureNavBar() {
         navigationItem.searchController = searchController
-        navigationController?.navigationBar.prefersLargeTitles = true
         title = "Locations"
     }
     
-    private func configureViewModel() {
-        locationsViewModel = LocationsViewModel()
+    private func setViewModelListeners() {
         locationsViewModel.locationsSubject.sink {[weak self] (locations) in
             self?.createSnapshot(from: locations)
         }
         .store(in: &cancellables)
+    }
+    private func getLocationsBySearchQuery(searchQuery: String) {
+        locationsViewModel.currentSearchQuery = searchQuery
+        locationsViewModel.canLoadMorePages = true
+        locationsViewModel.currentPage = 1
+        locationsViewModel.locationsSubject.value.removeAll()
+        locationsViewModel.getLocations()
     }
 }
 
@@ -77,6 +80,7 @@ extension LocationsViewController: UITableViewDelegate {
     private func configureTableView(){
         tableView.delegate = self
         tableView.allowsSelection = false
+        tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         view.addSubview(tableView)
         NSLayoutConstraint.activate(tableView.constraintsForAnchoringTo(boundsOf: view))
     }
@@ -85,6 +89,7 @@ extension LocationsViewController: UITableViewDelegate {
         dataSource = UITableViewDiffableDataSource<Section, Location>(tableView: tableView) {(tableView, indexPath, locationModel) -> UITableViewCell? in
             let cell = UITableViewCell()
             cell.textLabel?.text = locationModel.name
+            cell.textLabel?.textColor = .rickBlue
             return cell
         }
     }
@@ -103,6 +108,14 @@ extension LocationsViewController: UITableViewDelegate {
         
         if position > (tableViewContentSizeHeight - 100 - scrollViewHeight) {
             locationsViewModel.getLocations()
+        }
+    }
+}
+
+extension LocationsViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        if locationsViewModel.currentSearchQuery != "" {
+            getLocationsBySearchQuery(searchQuery: "")
         }
     }
 }
