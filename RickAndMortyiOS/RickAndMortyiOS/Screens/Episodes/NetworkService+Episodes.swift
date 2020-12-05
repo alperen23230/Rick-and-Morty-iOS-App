@@ -10,14 +10,8 @@ import Combine
 
 extension NetworkService {
     func getEpisodes(for page: Int, filterByName: String) -> Future<GeneralAPIResponse<Episode>, APIError> {
-        NetworkRoutes.sharedInstance.urlComponent.path = NetworkRoutes.Path.getEpisodes.rawValue
         
-        NetworkRoutes.sharedInstance.urlComponent.queryItems = [
-            URLQueryItem(name: "page", value: String(page)),
-            URLQueryItem(name: "name", value: filterByName)
-        ]
-       
-        var urlRequest = URLRequest(url: NetworkRoutes.sharedInstance.urlComponent.url!)
+        var urlRequest = URLRequest(url:Endpoint.getEpisodes(for: filterByName, page: page).url)
         
         urlRequest.httpMethod = HTTPTypes.GET.rawValue
         let publisher: AnyPublisher<GeneralAPIResponse<Episode>, Error> = fetchWithURLRequest(urlRequest)

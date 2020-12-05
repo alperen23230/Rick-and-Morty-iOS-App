@@ -10,14 +10,8 @@ import Combine
 
 extension NetworkService {
     func getLocations(for page: Int, filterByName: String) -> Future<GeneralAPIResponse<Location>, APIError> {
-        NetworkRoutes.sharedInstance.urlComponent.path = NetworkRoutes.Path.getLocations.rawValue
-        
-        NetworkRoutes.sharedInstance.urlComponent.queryItems = [
-            URLQueryItem(name: "page", value: String(page)),
-            URLQueryItem(name: "name", value: filterByName)
-        ]
        
-        var urlRequest = URLRequest(url: NetworkRoutes.sharedInstance.urlComponent.url!)
+        var urlRequest = URLRequest(url: Endpoint.getLocations(for: filterByName, page: page).url)
         
         urlRequest.httpMethod = HTTPTypes.GET.rawValue
         let publisher: AnyPublisher<GeneralAPIResponse<Location>, Error> = fetchWithURLRequest(urlRequest)
