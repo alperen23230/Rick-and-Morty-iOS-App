@@ -59,6 +59,11 @@ class LocationsViewController: UIViewController {
     private func setViewModelListeners() {
         locationsViewModel.locationsSubject.sink {[weak self] (locations) in
             self?.createSnapshot(from: locations)
+            if locations.isEmpty {
+                self?.tableView.setEmptyMessage(message: "No location found")
+            } else {
+                self?.tableView.restore()
+            }
         }
         .store(in: &cancellables)
     }
