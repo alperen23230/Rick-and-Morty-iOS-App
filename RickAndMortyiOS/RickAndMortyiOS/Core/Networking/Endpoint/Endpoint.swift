@@ -45,4 +45,15 @@ extension Endpoint {
                          URLQueryItem(name: "name", value: name)]
         )
     }
+    static func getCharacters(name: String, status: String, gender: String, page: Int) -> Self {
+        Endpoint(
+            path: "/api/character/",
+            queryItems: [
+                URLQueryItem(name: "page", value: String(page)),
+                URLQueryItem(name: "name", value: name),
+                URLQueryItem(name: "status", value: status),
+                URLQueryItem(name: "gender", value: gender),
+            ]
+        )
+    }
 }

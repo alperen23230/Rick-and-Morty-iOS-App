@@ -35,6 +35,8 @@
 		84ED0EE325612B23009CDC87 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0EE225612B23009CDC87 /* Endpoint.swift */; };
 		84ED0EEF25612CC1009CDC87 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0EEE25612CC1009CDC87 /* APIError.swift */; };
 		84F4F14A257B950B00A686A8 /* UITableView+EmptyMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4F149257B950B00A686A8 /* UITableView+EmptyMessage.swift */; };
+		84F4F14F257B9B1C00A686A8 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4F14E257B9B1C00A686A8 /* Character.swift */; };
+		84F4F154257B9C8500A686A8 /* NetworkService+Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4F153257B9C8500A686A8 /* NetworkService+Characters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,8 @@
 		84ED0EE225612B23009CDC87 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		84ED0EEE25612CC1009CDC87 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		84F4F149257B950B00A686A8 /* UITableView+EmptyMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+EmptyMessage.swift"; sourceTree = "<group>"; };
+		84F4F14E257B9B1C00A686A8 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		84F4F153257B9C8500A686A8 /* NetworkService+Characters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+Characters.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				8408154D254D8B1D003655D2 /* CharactersViewController.swift */,
+				84F4F153257B9C8500A686A8 /* NetworkService+Characters.swift */,
 			);
 			path = Characters;
 			sourceTree = "<group>";
@@ -269,6 +274,7 @@
 				8487E6F2256144C9008FB8C3 /* Location.swift */,
 				8487E6F7256146B2008FB8C3 /* GeneralAPIResponse.swift */,
 				847702DD256AA4B9001CA8EE /* Episode.swift */,
+				84F4F14E257B9B1C00A686A8 /* Character.swift */,
 			);
 			path = "Network Data Models";
 			sourceTree = "<group>";
@@ -451,6 +457,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84F4F154257B9C8500A686A8 /* NetworkService+Characters.swift in Sources */,
 				842D8C3525612F5E007AD847 /* NetworkService.swift in Sources */,
 				84421C58256958C000C21ED8 /* UIView+AutoLayout.swift in Sources */,
 				84ED0EE325612B23009CDC87 /* Endpoint.swift in Sources */,
@@ -462,6 +469,7 @@
 				8487E6FD256147EF008FB8C3 /* NetworkService+Locations.swift in Sources */,
 				84421C502569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift in Sources */,
 				8487E6F8256146B2008FB8C3 /* GeneralAPIResponse.swift in Sources */,
+				84F4F14F257B9B1C00A686A8 /* Character.swift in Sources */,
 				8487E6F3256144C9008FB8C3 /* Location.swift in Sources */,
 				84081553254D8B2F003655D2 /* EpisodesViewController.swift in Sources */,
 				840814F8254D869C003655D2 /* AppDelegate.swift in Sources */,
