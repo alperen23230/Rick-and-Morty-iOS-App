@@ -55,6 +55,7 @@ extension AppDelegate: Resolving {
     func setupRegistrations(){
         resolver.register { LocationsViewModel() }
         resolver.register { EpisodesViewModel() }
+        resolver.register { CharactersViewModel() }
     }
 }
 
