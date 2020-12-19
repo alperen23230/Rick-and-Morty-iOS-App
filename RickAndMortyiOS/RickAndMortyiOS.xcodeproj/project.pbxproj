@@ -20,6 +20,8 @@
 		8408155E254D8C6B003655D2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8408155D254D8C6B003655D2 /* Constants.swift */; };
 		84081563254D8F11003655D2 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84081562254D8F11003655D2 /* Colors.xcassets */; };
 		84081569254D8FDE003655D2 /* UIColor+CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84081568254D8FDE003655D2 /* UIColor+CustomColor.swift */; };
+		84269EE9258E5674008E3F9A /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 84269EE8258E5674008E3F9A /* SDWebImage */; };
+		84269EEB258E5674008E3F9A /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 84269EEA258E5674008E3F9A /* SDWebImageMapKit */; };
 		842D8C3525612F5E007AD847 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D8C3425612F5E007AD847 /* NetworkService.swift */; };
 		84421C502569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84421C4F2569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift */; };
 		84421C58256958C000C21ED8 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84421C57256958C000C21ED8 /* UIView+AutoLayout.swift */; };
@@ -103,6 +105,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84269EE9258E5674008E3F9A /* SDWebImage in Frameworks */,
+				84269EEB258E5674008E3F9A /* SDWebImageMapKit in Frameworks */,
 				847702F1256AB03A001CA8EE /* Resolver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,6 +349,8 @@
 			name = RickAndMortyiOS;
 			packageProductDependencies = (
 				847702F0256AB03A001CA8EE /* Resolver */,
+				84269EE8258E5674008E3F9A /* SDWebImage */,
+				84269EEA258E5674008E3F9A /* SDWebImageMapKit */,
 			);
 			productName = RickAndMortyiOS;
 			productReference = 840814F4254D869C003655D2 /* RickAndMortyiOS.app */;
@@ -419,6 +425,7 @@
 			mainGroup = 840814EB254D869B003655D2;
 			packageReferences = (
 				847702EF256AB03A001CA8EE /* XCRemoteSwiftPackageReference "Resolver" */,
+				84269EE7258E5674008E3F9A /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 840814F5254D869C003655D2 /* Products */;
 			projectDirPath = "";
@@ -817,6 +824,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		84269EE7258E5674008E3F9A /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.0;
+			};
+		};
 		847702EF256AB03A001CA8EE /* XCRemoteSwiftPackageReference "Resolver" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hmlongco/Resolver";
@@ -828,6 +843,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		84269EE8258E5674008E3F9A /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84269EE7258E5674008E3F9A /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		84269EEA258E5674008E3F9A /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84269EE7258E5674008E3F9A /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
+		};
 		847702F0256AB03A001CA8EE /* Resolver */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 847702EF256AB03A001CA8EE /* XCRemoteSwiftPackageReference "Resolver" */;

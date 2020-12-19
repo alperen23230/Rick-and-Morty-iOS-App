@@ -12,6 +12,7 @@ enum SFSymbols {
     static let locationsSymbol = UIImage(systemName: "globe")
     static let charactersSymbol = UIImage(systemName: "person.3")
     static let episodesSymbol = UIImage(systemName: "tv")
+    static let statusSymbol = UIImage(systemName: "circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 8, weight: .regular, scale: .default))
 }
 
 enum ScreenSize {

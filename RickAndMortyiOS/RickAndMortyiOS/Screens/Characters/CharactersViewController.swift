@@ -35,16 +35,14 @@ class CharactersViewController: UIViewController {
     private func setupCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCompositionalLayout())
         collectionView.delegate = self
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .systemBackground
         collectionView.register(CharacterCollectionViewCell.self, forCellWithReuseIdentifier: CharacterCollectionViewCell.reuseIdentifier)
         view.addSubview(collectionView)
-        // NSLayoutConstraint.activate(collectionView.constraintsForAnchoringTo(boundsOf: view))
-        
     }
    
     
     private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.30),
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.33),
                                               heightDimension: .fractionalHeight(1.0))
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -52,16 +50,10 @@ class CharactersViewController: UIViewController {
         item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .fractionalWidth(0.5))
+                                               heightDimension: .fractionalWidth(0.45))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
-        // item spacing
-        group.interItemSpacing = .fixed(5)
-        
         let section = NSCollectionLayoutSection(group: group)
-        
-        // group spacing
-        section.interGroupSpacing = 5
         
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
@@ -90,12 +82,10 @@ extension CharactersViewController: UICollectionViewDelegate {
         case main
     }
     
-    
-    
     private func configureDataSource(){
         dataSource = UICollectionViewDiffableDataSource<Section, Character>(collectionView: collectionView) {(collectionView, indexPath, characterModel) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCollectionViewCell.reuseIdentifier, for: indexPath) as? CharacterCollectionViewCell
-            cell?.configure(with: characterModel)
+            cell?.set(with: characterModel)
             return cell
         }
     }
