@@ -12,23 +12,25 @@ import Resolver
 class CharactersViewController: UIViewController {
     
     private var collectionView: UICollectionView!
+    private let searchController = UISearchController()
+    
     private var dataSource: UICollectionViewDiffableDataSource<Section, Character>!
-    
     private var cancellables = Set<AnyCancellable>()
-    
     @LazyInjected private var charactersViewModel: CharactersViewModel
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar()
+        configureSearchController()
         setupCollectionView()
         configureDataSource()
         setViewModelListeners()
+        setSearchControllerListeners()
         charactersViewModel.getCharacters()
     }
     
     private func configureNavBar() {
-       // navigationItem.searchController = searchController
+        navigationItem.searchController = searchController
         title = "Characters"
     }
     
@@ -39,14 +41,11 @@ class CharactersViewController: UIViewController {
         collectionView.register(CharacterCollectionViewCell.self, forCellWithReuseIdentifier: CharacterCollectionViewCell.reuseIdentifier)
         view.addSubview(collectionView)
     }
-   
     
     private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.33),
                                               heightDimension: .fractionalHeight(1.0))
-        
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
         item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
@@ -59,21 +58,17 @@ class CharactersViewController: UIViewController {
         return layout
     }
     
-    
-    
     private func setViewModelListeners() {
         charactersViewModel.charactersSubject.sink {[weak self] (characters) in
             self?.createSnapshot(from: characters)
-            //            if episodes.isEmpty {
-            //                self?.tableView.setEmptyMessage(message: "No episode found")
-            //            } else {
-            //                self?.tableView.restore()
-            //            }
+            if characters.isEmpty {
+                self?.collectionView.setEmptyMessage(message: "No character found")
+            } else {
+                self?.collectionView.restore()
+            }
         }
         .store(in: &cancellables)
     }
-    
-    
 }
 
 //Collection View Data Source Configurations
@@ -108,3 +103,40 @@ extension CharactersViewController: UICollectionViewDelegate {
         }
     }
 }
+
+//Search bar methods
+extension CharactersViewController: UISearchBarDelegate {
+    private func configureSearchController(){
+        searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search a Character"
+        searchController.obscuresBackgroundDuringPresentation = false
+    }
+    
+    private func setSearchControllerListeners(){
+        NotificationCenter.default.publisher(for: UISearchTextField.textDidChangeNotification, object: searchController.searchBar.searchTextField)
+            .map {
+                ($0.object as! UISearchTextField).text
+            }
+            .debounce(for: 0.3, scheduler: DispatchQueue.main)
+            .removeDuplicates()
+            .sink {[weak self] (searchQuery) in
+                self?.getCharactersBySearchQuery(searchQuery: searchQuery ?? "")
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func getCharactersBySearchQuery(searchQuery: String) {
+        charactersViewModel.currentSearchQuery = searchQuery
+        charactersViewModel.canLoadMorePages = true
+        charactersViewModel.currentPage = 1
+        charactersViewModel.charactersSubject.value.removeAll()
+        charactersViewModel.getCharacters()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        if charactersViewModel.currentSearchQuery != "" {
+            getCharactersBySearchQuery(searchQuery: "")
+        }
+    }
+}
+

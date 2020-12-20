@@ -17,7 +17,6 @@ class EpisodesViewController: UIViewController {
     
     private var dataSource: UITableViewDiffableDataSource<Section, Episode>!
     private var cancellables = Set<AnyCancellable>()
-    
     @LazyInjected private var episodesViewModel: EpisodesViewModel
     
     
@@ -30,25 +29,6 @@ class EpisodesViewController: UIViewController {
         configureSearchController()
         setSearchControllerListeners()
         episodesViewModel.getEpisodes()
-    }
-    
-    private func configureSearchController(){
-        searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Search a Episode"
-        searchController.obscuresBackgroundDuringPresentation = false
-    }
-    
-    private func setSearchControllerListeners(){
-        NotificationCenter.default.publisher(for: UISearchTextField.textDidChangeNotification, object: searchController.searchBar.searchTextField)
-            .map {
-                ($0.object as! UISearchTextField).text
-            }
-            .debounce(for: 0.3, scheduler: DispatchQueue.main)
-            .removeDuplicates()
-            .sink {[weak self] (searchQuery) in
-                self?.getEpisodesBySearchQuery(searchQuery: searchQuery ?? "")
-            }
-            .store(in: &cancellables)
     }
     
     private func configureNavBar() {
@@ -67,13 +47,7 @@ class EpisodesViewController: UIViewController {
         }
         .store(in: &cancellables)
     }
-    private func getEpisodesBySearchQuery(searchQuery: String) {
-        episodesViewModel.currentSearchQuery = searchQuery
-        episodesViewModel.canLoadMorePages = true
-        episodesViewModel.currentPage = 1
-        episodesViewModel.episodesSubject.value.removeAll()
-        episodesViewModel.getEpisodes()
-    }
+    
 }
 
 //Table View Data Source Configurations
@@ -119,6 +93,34 @@ extension EpisodesViewController: UITableViewDelegate {
 }
 
 extension EpisodesViewController: UISearchBarDelegate {
+    private func configureSearchController(){
+        searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search a Episode"
+        searchController.obscuresBackgroundDuringPresentation = false
+    }
+    
+    private func setSearchControllerListeners(){
+        NotificationCenter.default.publisher(for: UISearchTextField.textDidChangeNotification, object: searchController.searchBar.searchTextField)
+            .map {
+                ($0.object as! UISearchTextField).text
+            }
+            .debounce(for: 0.3, scheduler: DispatchQueue.main)
+            .removeDuplicates()
+            .sink {[weak self] (searchQuery) in
+                self?.getEpisodesBySearchQuery(searchQuery: searchQuery ?? "")
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func getEpisodesBySearchQuery(searchQuery: String) {
+        episodesViewModel.currentSearchQuery = searchQuery
+        episodesViewModel.canLoadMorePages = true
+        episodesViewModel.currentPage = 1
+        episodesViewModel.episodesSubject.value.removeAll()
+        episodesViewModel.getEpisodes()
+    }
+    
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         if episodesViewModel.currentSearchQuery != "" {
             getEpisodesBySearchQuery(searchQuery: "")

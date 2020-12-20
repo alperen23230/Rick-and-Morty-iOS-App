@@ -10,7 +10,6 @@ import Combine
 
 extension NetworkService {
     func getCharacters(for page: Int, filterByName: String, filterByGender: String, filterByStatus: String) -> Future<GeneralAPIResponse<Character>, APIError> {
-        
         var urlRequest = URLRequest(url:Endpoint.getCharacters(name: filterByName, status: filterByStatus, gender: filterByGender, page: page).url)
         
         urlRequest.httpMethod = HTTPTypes.GET.rawValue

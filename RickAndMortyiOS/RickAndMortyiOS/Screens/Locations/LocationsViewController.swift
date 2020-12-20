@@ -17,7 +17,6 @@ class LocationsViewController: UIViewController {
     
     private var dataSource: UITableViewDiffableDataSource<Section, Location>!
     private var cancellables = Set<AnyCancellable>()
-    
     @LazyInjected private var locationsViewModel: LocationsViewModel
     
     override func viewDidLoad() {
@@ -29,26 +28,6 @@ class LocationsViewController: UIViewController {
         configureSearchController()
         setSearchControllerListeners()
         locationsViewModel.getLocations()
-    
-    }
-    
-    private func configureSearchController(){
-        searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Search a Location"
-        searchController.obscuresBackgroundDuringPresentation = false
-    }
-    
-    private func setSearchControllerListeners(){
-        NotificationCenter.default.publisher(for: UISearchTextField.textDidChangeNotification, object: searchController.searchBar.searchTextField)
-            .map {
-                ($0.object as! UISearchTextField).text
-            }
-            .debounce(for: 0.3, scheduler: DispatchQueue.main)
-            .removeDuplicates()
-            .sink {[weak self] (searchQuery) in
-                self?.getLocationsBySearchQuery(searchQuery: searchQuery ?? "")
-            }
-            .store(in: &cancellables)
     }
     
     private func configureNavBar() {
@@ -66,13 +45,6 @@ class LocationsViewController: UIViewController {
             }
         }
         .store(in: &cancellables)
-    }
-    private func getLocationsBySearchQuery(searchQuery: String) {
-        locationsViewModel.currentSearchQuery = searchQuery
-        locationsViewModel.canLoadMorePages = true
-        locationsViewModel.currentPage = 1
-        locationsViewModel.locationsSubject.value.removeAll()
-        locationsViewModel.getLocations()
     }
 }
 
@@ -118,6 +90,33 @@ extension LocationsViewController: UITableViewDelegate {
 }
 
 extension LocationsViewController: UISearchBarDelegate {
+    private func configureSearchController(){
+        searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search a Location"
+        searchController.obscuresBackgroundDuringPresentation = false
+    }
+    
+    private func setSearchControllerListeners(){
+        NotificationCenter.default.publisher(for: UISearchTextField.textDidChangeNotification, object: searchController.searchBar.searchTextField)
+            .map {
+                ($0.object as! UISearchTextField).text
+            }
+            .debounce(for: 0.3, scheduler: DispatchQueue.main)
+            .removeDuplicates()
+            .sink {[weak self] (searchQuery) in
+                self?.getLocationsBySearchQuery(searchQuery: searchQuery ?? "")
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func getLocationsBySearchQuery(searchQuery: String) {
+        locationsViewModel.currentSearchQuery = searchQuery
+        locationsViewModel.canLoadMorePages = true
+        locationsViewModel.currentPage = 1
+        locationsViewModel.locationsSubject.value.removeAll()
+        locationsViewModel.getLocations()
+    }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         if locationsViewModel.currentSearchQuery != "" {
             getLocationsBySearchQuery(searchQuery: "")
