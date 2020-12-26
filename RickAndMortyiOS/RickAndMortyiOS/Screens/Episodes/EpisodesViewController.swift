@@ -55,7 +55,7 @@ class EpisodesViewController: UIViewController {
     
 }
 
-//Table View Data Source Configurations
+// MARK: - Table View Data Source Configurations
 extension EpisodesViewController: UITableViewDelegate {
     fileprivate enum Section {
         case main
@@ -96,7 +96,7 @@ extension EpisodesViewController: UITableViewDelegate {
         }
     }
 }
-
+// MARK: - Search Bar methods
 extension EpisodesViewController: UISearchBarDelegate {
     private func configureSearchController(){
         searchController.searchBar.delegate = self

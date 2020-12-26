@@ -36,7 +36,7 @@ class CharacterCollectionViewCell: UICollectionViewCell {
         nameLabel.font = .preferredFont(forTextStyle: .subheadline)
         nameLabel.adjustsFontSizeToFitWidth = true
         nameLabel.lineBreakMode = .byTruncatingTail
-        nameLabel.textColor = .label
+        nameLabel.textColor = .white
         
         statusLabel.font = .preferredFont(forTextStyle: .footnote)
         statusLabel.lineBreakMode = .byTruncatingTail

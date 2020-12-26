@@ -31,7 +31,15 @@ class CharactersViewController: UIViewController {
     
     private func configureNavBar() {
         navigationItem.searchController = searchController
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: SFSymbols.characterFilterSymbol, style: .plain, target: self, action: #selector(filterButtonClicked))
         title = "Characters"
+    }
+    
+    @objc private func filterButtonClicked() {
+        let characterFilterVC = CharacterFilterViewController()
+        characterFilterVC.modalPresentationStyle = .custom
+        characterFilterVC.transitioningDelegate = self
+        self.present(characterFilterVC, animated: true)
     }
     
     private func setupCollectionView() {
@@ -59,16 +67,6 @@ class CharactersViewController: UIViewController {
     }
     
     private func setViewModelListeners() {
-//        charactersViewModel.charactersSubject.sink {[weak self] (characters) in
-//            self?.createSnapshot(from: characters)
-//            if characters.isEmpty {
-//                self?.collectionView.setEmptyMessage(message: "No character found")
-//            } else {
-//                self?.collectionView.restore()
-//            }
-//        }
-//        .store(in: &cancellables)
-        
         Publishers.CombineLatest(charactersViewModel.isFirstLoadingPageSubject, charactersViewModel.charactersSubject).sink {[weak self] (isLoading, characters) in
             if isLoading {
                 self?.collectionView.setLoading()
@@ -86,7 +84,7 @@ class CharactersViewController: UIViewController {
     }
 }
 
-//Collection View Data Source Configurations
+// MARK: - Collection View Data Source Configurations
 extension CharactersViewController: UICollectionViewDelegate {
     fileprivate enum Section {
         case main
@@ -119,7 +117,7 @@ extension CharactersViewController: UICollectionViewDelegate {
     }
 }
 
-//Search bar methods
+// MARK: - Search bar methods
 extension CharactersViewController: UISearchBarDelegate {
     private func configureSearchController(){
         searchController.searchBar.delegate = self
@@ -152,6 +150,14 @@ extension CharactersViewController: UISearchBarDelegate {
         if charactersViewModel.currentSearchQuery != "" {
             getCharactersBySearchQuery(searchQuery: "")
         }
+    }
+}
+
+// MARK: - Bottom Sheet Presentation
+
+extension CharactersViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        PresentationController(presentedViewController: presented, presenting: presenting)
     }
 }
 

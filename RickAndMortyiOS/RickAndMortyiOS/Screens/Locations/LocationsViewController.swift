@@ -53,7 +53,7 @@ class LocationsViewController: UIViewController {
     }
 }
 
-//Table View Data Source Configurations
+// MARK: - Table View Data Source Configurations
 extension LocationsViewController: UITableViewDelegate {
     fileprivate enum Section {
         case main
@@ -93,7 +93,7 @@ extension LocationsViewController: UITableViewDelegate {
         }
     }
 }
-
+// MARK: - Search Bar Methods
 extension LocationsViewController: UISearchBarDelegate {
     private func configureSearchController(){
         searchController.searchBar.delegate = self

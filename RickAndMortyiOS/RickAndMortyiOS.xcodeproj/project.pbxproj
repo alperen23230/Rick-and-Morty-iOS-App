@@ -35,6 +35,8 @@
 		8487E6F8256146B2008FB8C3 /* GeneralAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8487E6F7256146B2008FB8C3 /* GeneralAPIResponse.swift */; };
 		8487E6FD256147EF008FB8C3 /* NetworkService+Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8487E6FC256147EF008FB8C3 /* NetworkService+Locations.swift */; };
 		848BAE43258FB91900821379 /* UICollectionView+EmptyMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848BAE42258FB91900821379 /* UICollectionView+EmptyMessage.swift */; };
+		8497E50F259737B400EA4687 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497E50E259737B400EA4687 /* PresentationController.swift */; };
+		8497E5192597384E00EA4687 /* CharacterFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497E5182597384E00EA4687 /* CharacterFilterViewController.swift */; };
 		84A1FAEC257D69BC003F2CCF /* CharactersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1FAEB257D69BC003F2CCF /* CharactersViewModel.swift */; };
 		84A1FAF1257D6DD7003F2CCF /* CharacterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1FAF0257D6DD6003F2CCF /* CharacterCollectionViewCell.swift */; };
 		84C2FF512597170C0058C4BB /* UITableView+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C2FF502597170C0058C4BB /* UITableView+Loading.swift */; };
@@ -95,6 +97,8 @@
 		8487E6F7256146B2008FB8C3 /* GeneralAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAPIResponse.swift; sourceTree = "<group>"; };
 		8487E6FC256147EF008FB8C3 /* NetworkService+Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+Locations.swift"; sourceTree = "<group>"; };
 		848BAE42258FB91900821379 /* UICollectionView+EmptyMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+EmptyMessage.swift"; sourceTree = "<group>"; };
+		8497E50E259737B400EA4687 /* PresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
+		8497E5182597384E00EA4687 /* CharacterFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterFilterViewController.swift; sourceTree = "<group>"; };
 		84A1FAEB257D69BC003F2CCF /* CharactersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewModel.swift; sourceTree = "<group>"; };
 		84A1FAF0257D6DD6003F2CCF /* CharacterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionViewCell.swift; sourceTree = "<group>"; };
 		84C2FF502597170C0058C4BB /* UITableView+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Loading.swift"; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 		840814F6254D869C003655D2 /* RickAndMortyiOS */ = {
 			isa = PBXGroup;
 			children = (
+				8497E50D2597379700EA4687 /* Custom Views */,
 				84081538254D88BF003655D2 /* Screens */,
 				84081536254D8885003655D2 /* Core */,
 				840814F7254D869C003655D2 /* AppDelegate.swift */,
@@ -233,6 +238,7 @@
 				84F4F153257B9C8500A686A8 /* NetworkService+Characters.swift */,
 				84A1FAEB257D69BC003F2CCF /* CharactersViewModel.swift */,
 				84A1FAF0257D6DD6003F2CCF /* CharacterCollectionViewCell.swift */,
+				8497E5182597384E00EA4687 /* CharacterFilterViewController.swift */,
 			);
 			path = Characters;
 			sourceTree = "<group>";
@@ -296,6 +302,14 @@
 				84F4F14E257B9B1C00A686A8 /* Character.swift */,
 			);
 			path = "Network Data Models";
+			sourceTree = "<group>";
+		};
+		8497E50D2597379700EA4687 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				8497E50E259737B400EA4687 /* PresentationController.swift */,
+			);
+			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 		84ED0EE125612AD8009CDC87 /* Networking */ = {
@@ -484,6 +498,7 @@
 				84421C58256958C000C21ED8 /* UIView+AutoLayout.swift in Sources */,
 				84ED0EE325612B23009CDC87 /* Endpoint.swift in Sources */,
 				8487E6EB25614400008FB8C3 /* PageInfo.swift in Sources */,
+				8497E50F259737B400EA4687 /* PresentationController.swift in Sources */,
 				84081558254D8B3F003655D2 /* LocationsViewController.swift in Sources */,
 				84C2FF56259725300058C4BB /* UICollectionView+Loading.swift in Sources */,
 				84F4F14A257B950B00A686A8 /* UITableView+EmptyMessage.swift in Sources */,
@@ -493,6 +508,7 @@
 				84C2FF512597170C0058C4BB /* UITableView+Loading.swift in Sources */,
 				8487E6FD256147EF008FB8C3 /* NetworkService+Locations.swift in Sources */,
 				84421C502569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift in Sources */,
+				8497E5192597384E00EA4687 /* CharacterFilterViewController.swift in Sources */,
 				8487E6F8256146B2008FB8C3 /* GeneralAPIResponse.swift in Sources */,
 				84F4F14F257B9B1C00A686A8 /* Character.swift in Sources */,
 				8487E6F3256144C9008FB8C3 /* Location.swift in Sources */,
