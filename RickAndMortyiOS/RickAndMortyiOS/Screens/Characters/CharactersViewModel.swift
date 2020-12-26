@@ -14,6 +14,7 @@ class CharactersViewModel {
     private var isLoadingPage = false
     
     let charactersSubject = CurrentValueSubject<[Character], Never>([])
+    let isFirstLoadingPageSubject = CurrentValueSubject<Bool, Never>(true)
     var currentSearchQuery = ""
     var currentPage = 1
     var canLoadMorePages = true
@@ -35,6 +36,7 @@ class CharactersViewModel {
             }
             self?.currentPage += 1
             self?.charactersSubject.value.append(contentsOf: characterResponseModel.results)
+            self?.isFirstLoadingPageSubject.value = false
         }
         .store(in: &cancellables)
     }

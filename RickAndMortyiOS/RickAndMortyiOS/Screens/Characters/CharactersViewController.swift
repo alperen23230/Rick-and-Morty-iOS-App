@@ -59,12 +59,27 @@ class CharactersViewController: UIViewController {
     }
     
     private func setViewModelListeners() {
-        charactersViewModel.charactersSubject.sink {[weak self] (characters) in
-            self?.createSnapshot(from: characters)
-            if characters.isEmpty {
-                self?.collectionView.setEmptyMessage(message: "No character found")
+//        charactersViewModel.charactersSubject.sink {[weak self] (characters) in
+//            self?.createSnapshot(from: characters)
+//            if characters.isEmpty {
+//                self?.collectionView.setEmptyMessage(message: "No character found")
+//            } else {
+//                self?.collectionView.restore()
+//            }
+//        }
+//        .store(in: &cancellables)
+        
+        Publishers.CombineLatest(charactersViewModel.isFirstLoadingPageSubject, charactersViewModel.charactersSubject).sink {[weak self] (isLoading, characters) in
+            if isLoading {
+                self?.collectionView.setLoading()
             } else {
                 self?.collectionView.restore()
+                self?.createSnapshot(from: characters)
+                if characters.isEmpty {
+                    self?.collectionView.setEmptyMessage(message: "No character found")
+                } else {
+                    self?.collectionView.restore()
+                }
             }
         }
         .store(in: &cancellables)

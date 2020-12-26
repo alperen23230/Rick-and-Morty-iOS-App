@@ -37,12 +37,17 @@ class EpisodesViewController: UIViewController {
     }
     
     private func setViewModelListeners() {
-        episodesViewModel.episodesSubject.sink {[weak self] (episodes) in
-            self?.createSnapshot(from: episodes)
-            if episodes.isEmpty {
-                self?.tableView.setEmptyMessage(message: "No episode found")
+        Publishers.CombineLatest(episodesViewModel.isFirstLoadingPageSubject, episodesViewModel.episodesSubject).sink {[weak self] (isLoading, episodes) in
+            if isLoading {
+                self?.tableView.setLoading()
             } else {
                 self?.tableView.restore()
+                self?.createSnapshot(from: episodes)
+                if episodes.isEmpty {
+                    self?.tableView.setEmptyMessage(message: "No episode found")
+                } else {
+                    self?.tableView.restore()
+                }
             }
         }
         .store(in: &cancellables)

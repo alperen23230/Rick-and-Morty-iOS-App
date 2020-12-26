@@ -14,6 +14,7 @@ class LocationsViewModel {
     private var isLoadingPage = false
     
     let locationsSubject = CurrentValueSubject<[Location], Never>([])
+    let isFirstLoadingPageSubject = CurrentValueSubject<Bool, Never>(true)
     var currentSearchQuery = ""
     var currentPage = 1
     var canLoadMorePages = true
@@ -35,6 +36,7 @@ class LocationsViewModel {
             }
             self?.currentPage += 1
             self?.locationsSubject.value.append(contentsOf: locationResponseModel.results)
+            self?.isFirstLoadingPageSubject.value = false
         }
         .store(in: &cancellables)
     }

@@ -37,6 +37,8 @@
 		848BAE43258FB91900821379 /* UICollectionView+EmptyMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848BAE42258FB91900821379 /* UICollectionView+EmptyMessage.swift */; };
 		84A1FAEC257D69BC003F2CCF /* CharactersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1FAEB257D69BC003F2CCF /* CharactersViewModel.swift */; };
 		84A1FAF1257D6DD7003F2CCF /* CharacterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1FAF0257D6DD6003F2CCF /* CharacterCollectionViewCell.swift */; };
+		84C2FF512597170C0058C4BB /* UITableView+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C2FF502597170C0058C4BB /* UITableView+Loading.swift */; };
+		84C2FF56259725300058C4BB /* UICollectionView+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C2FF55259725300058C4BB /* UICollectionView+Loading.swift */; };
 		84ED0EE325612B23009CDC87 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0EE225612B23009CDC87 /* Endpoint.swift */; };
 		84ED0EEF25612CC1009CDC87 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0EEE25612CC1009CDC87 /* APIError.swift */; };
 		84F4F14A257B950B00A686A8 /* UITableView+EmptyMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4F149257B950B00A686A8 /* UITableView+EmptyMessage.swift */; };
@@ -95,6 +97,8 @@
 		848BAE42258FB91900821379 /* UICollectionView+EmptyMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+EmptyMessage.swift"; sourceTree = "<group>"; };
 		84A1FAEB257D69BC003F2CCF /* CharactersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewModel.swift; sourceTree = "<group>"; };
 		84A1FAF0257D6DD6003F2CCF /* CharacterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionViewCell.swift; sourceTree = "<group>"; };
+		84C2FF502597170C0058C4BB /* UITableView+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Loading.swift"; sourceTree = "<group>"; };
+		84C2FF55259725300058C4BB /* UICollectionView+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Loading.swift"; sourceTree = "<group>"; };
 		84ED0EE225612B23009CDC87 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		84ED0EEE25612CC1009CDC87 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		84F4F149257B950B00A686A8 /* UITableView+EmptyMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+EmptyMessage.swift"; sourceTree = "<group>"; };
@@ -268,6 +272,8 @@
 				84421C57256958C000C21ED8 /* UIView+AutoLayout.swift */,
 				84F4F149257B950B00A686A8 /* UITableView+EmptyMessage.swift */,
 				848BAE42258FB91900821379 /* UICollectionView+EmptyMessage.swift */,
+				84C2FF502597170C0058C4BB /* UITableView+Loading.swift */,
+				84C2FF55259725300058C4BB /* UICollectionView+Loading.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -479,10 +485,12 @@
 				84ED0EE325612B23009CDC87 /* Endpoint.swift in Sources */,
 				8487E6EB25614400008FB8C3 /* PageInfo.swift in Sources */,
 				84081558254D8B3F003655D2 /* LocationsViewController.swift in Sources */,
+				84C2FF56259725300058C4BB /* UICollectionView+Loading.swift in Sources */,
 				84F4F14A257B950B00A686A8 /* UITableView+EmptyMessage.swift in Sources */,
 				84081569254D8FDE003655D2 /* UIColor+CustomColor.swift in Sources */,
 				84A1FAF1257D6DD7003F2CCF /* CharacterCollectionViewCell.swift in Sources */,
 				84ED0EEF25612CC1009CDC87 /* APIError.swift in Sources */,
+				84C2FF512597170C0058C4BB /* UITableView+Loading.swift in Sources */,
 				8487E6FD256147EF008FB8C3 /* NetworkService+Locations.swift in Sources */,
 				84421C502569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift in Sources */,
 				8487E6F8256146B2008FB8C3 /* GeneralAPIResponse.swift in Sources */,

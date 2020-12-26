@@ -12,6 +12,8 @@ class EpisodesViewModel {
     private var cancellables = Set<AnyCancellable>()
     private var isLoadingPage = false
     
+    let isFirstLoadingPageSubject = CurrentValueSubject<Bool, Never>(true)
+    
     let episodesSubject = CurrentValueSubject<[Episode], Never>([])
     var currentSearchQuery = ""
     var currentPage = 1
@@ -34,6 +36,7 @@ class EpisodesViewModel {
             }
             self?.currentPage += 1
             self?.episodesSubject.value.append(contentsOf: episodeResponseModel.results)
+            self?.isFirstLoadingPageSubject.value = false
         }
         .store(in: &cancellables)
     }

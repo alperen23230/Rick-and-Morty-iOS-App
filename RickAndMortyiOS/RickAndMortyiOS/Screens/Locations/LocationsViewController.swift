@@ -36,12 +36,17 @@ class LocationsViewController: UIViewController {
     }
     
     private func setViewModelListeners() {
-        locationsViewModel.locationsSubject.sink {[weak self] (locations) in
-            self?.createSnapshot(from: locations)
-            if locations.isEmpty {
-                self?.tableView.setEmptyMessage(message: "No location found")
+        Publishers.CombineLatest(locationsViewModel.isFirstLoadingPageSubject, locationsViewModel.locationsSubject).sink {[weak self] (isLoading, locations) in
+            if isLoading {
+                self?.tableView.setLoading()
             } else {
                 self?.tableView.restore()
+                self?.createSnapshot(from: locations)
+                if locations.isEmpty {
+                    self?.tableView.setEmptyMessage(message: "No location found")
+                } else {
+                    self?.tableView.restore()
+                }
             }
         }
         .store(in: &cancellables)
