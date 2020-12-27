@@ -36,7 +36,8 @@ class CharactersViewController: UIViewController {
     }
     
     @objc private func filterButtonClicked() {
-        let characterFilterVC = CharacterFilterViewController()
+        let characterFilterVC = CharacterFilterViewController(currentStatus: charactersViewModel.currentStatus, currentGender: charactersViewModel.currentGender)
+        characterFilterVC.filterDelegate = self
         characterFilterVC.modalPresentationStyle = .custom
         characterFilterVC.transitioningDelegate = self
         self.present(characterFilterVC, animated: true)
@@ -133,6 +134,7 @@ extension CharactersViewController: UISearchBarDelegate {
             .debounce(for: 0.3, scheduler: DispatchQueue.main)
             .removeDuplicates()
             .sink {[weak self] (searchQuery) in
+                self?.charactersViewModel.isFirstLoadingPageSubject.value = true
                 self?.getCharactersBySearchQuery(searchQuery: searchQuery ?? "")
             }
             .store(in: &cancellables)
@@ -142,7 +144,6 @@ extension CharactersViewController: UISearchBarDelegate {
         charactersViewModel.currentSearchQuery = searchQuery
         charactersViewModel.canLoadMorePages = true
         charactersViewModel.currentPage = 1
-        charactersViewModel.charactersSubject.value.removeAll()
         charactersViewModel.getCharacters()
     }
     
@@ -158,6 +159,19 @@ extension CharactersViewController: UISearchBarDelegate {
 extension CharactersViewController: UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         PresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
+
+// MARK: - Filter Delegate
+extension CharactersViewController: CharacterFilterDelegate {
+    func didFilterTapped(selectedStatus: String, selectedGender: String) {
+        charactersViewModel.currentStatus = selectedStatus
+        charactersViewModel.currentGender = selectedGender
+        
+        charactersViewModel.isFirstLoadingPageSubject.value = true
+        charactersViewModel.canLoadMorePages = true
+        charactersViewModel.currentPage = 1
+        charactersViewModel.getCharacters()
     }
 }
 
