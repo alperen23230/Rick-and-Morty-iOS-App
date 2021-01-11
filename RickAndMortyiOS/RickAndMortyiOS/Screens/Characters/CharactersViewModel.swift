@@ -21,6 +21,7 @@ class CharactersViewModel {
     var currentPage = 1
     var canLoadMorePages = true
     
+    //Get characters from API
     func getCharacters() {
         guard !isLoadingPage && canLoadMorePages else {
             return
