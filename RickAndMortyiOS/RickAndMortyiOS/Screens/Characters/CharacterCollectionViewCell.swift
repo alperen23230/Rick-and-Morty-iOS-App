@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SDWebImage
+import Hero
 
 class CharacterCollectionViewCell: UICollectionViewCell {
     static let reuseIdentifier: String = "CharacterViewCell"
@@ -90,6 +91,7 @@ class CharacterCollectionViewCell: UICollectionViewCell {
     }
     
     func set(with character: Character) {
+        characterImageView.hero.id = character.uuid.uuidString
         guard let imageURL = URL(string: character.imageURL) else { return }
         characterImageView.sd_setImage(with: imageURL)
         nameLabel.text = character.name

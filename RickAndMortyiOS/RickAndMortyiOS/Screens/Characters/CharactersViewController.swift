@@ -8,6 +8,7 @@
 import UIKit
 import Combine
 import Resolver
+import Hero
 
 class CharactersViewController: UIViewController {
     
@@ -27,6 +28,11 @@ class CharactersViewController: UIViewController {
         setViewModelListeners()
         setSearchControllerListeners()
         charactersViewModel.getCharacters()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.hero.isEnabled = true
     }
     
     private func configureNavBar() {
@@ -99,6 +105,16 @@ extension CharactersViewController: UICollectionViewDelegate {
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let currentCharacter = charactersViewModel.charactersSubject.value[indexPath.row]
+        let characterDetailVC = CharacterDetailViewController(character: currentCharacter)
+        characterDetailVC.hero.isEnabled = true
+        characterDetailVC.characterImageView.hero.id = currentCharacter.uuid.uuidString
+        navigationController?.hero.isEnabled = true
+        navigationController?.heroNavigationAnimationType = .auto
+        navigationController?.pushViewController(characterDetailVC, animated: true)
+    }
+    
     private func createSnapshot(from addedCharacters: [Character]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Character>()
         snapshot.appendSections([.main])
@@ -116,6 +132,8 @@ extension CharactersViewController: UICollectionViewDelegate {
             charactersViewModel.getCharacters()
         }
     }
+    
+    
 }
 
 // MARK: - Search bar methods
