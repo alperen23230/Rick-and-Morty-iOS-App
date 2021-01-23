@@ -29,17 +29,25 @@ class CharacterDetailViewController: UIViewController {
         configureImage()
         configureViewLayout()
         configureNavBar()
-        
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        enableHero()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        disableHero()
     }
     
     private func configureNavBar() {
-       // navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .never
         title = character.name
     }
     
     private func configureImage () {
-       
+        
         characterImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
         guard let imageURL = URL(string: character.imageURL) else { return }
         characterImageView.sd_setImage(with: imageURL)
@@ -48,8 +56,9 @@ class CharacterDetailViewController: UIViewController {
     }
     
     private func configureViewLayout() {
+        view.backgroundColor = .systemBackground
         NSLayoutConstraint.activate([
-            characterImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            characterImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             characterImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             characterImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         ])

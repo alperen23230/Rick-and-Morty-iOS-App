@@ -26,6 +26,8 @@
 		84421C502569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84421C4F2569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift */; };
 		84421C58256958C000C21ED8 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84421C57256958C000C21ED8 /* UIView+AutoLayout.swift */; };
 		84421C5D256962C000C21ED8 /* LocationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84421C5C256962C000C21ED8 /* LocationsViewModel.swift */; };
+		84691A6F25BC8114009C8673 /* UIViewController+Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84691A6E25BC8114009C8673 /* UIViewController+Hero.swift */; };
+		84691A7425BC8140009C8673 /* UINavigationController+Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84691A7325BC8140009C8673 /* UINavigationController+Hero.swift */; };
 		847702D9256AA485001CA8EE /* NetworkService+Episodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847702D8256AA485001CA8EE /* NetworkService+Episodes.swift */; };
 		847702DE256AA4B9001CA8EE /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847702DD256AA4B9001CA8EE /* Episode.swift */; };
 		847702E3256AA690001CA8EE /* EpisodesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847702E2256AA690001CA8EE /* EpisodesViewModel.swift */; };
@@ -94,6 +96,8 @@
 		84421C4F2569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutPropertyWrapper.swift; sourceTree = "<group>"; };
 		84421C57256958C000C21ED8 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		84421C5C256962C000C21ED8 /* LocationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewModel.swift; sourceTree = "<group>"; };
+		84691A6E25BC8114009C8673 /* UIViewController+Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Hero.swift"; sourceTree = "<group>"; };
+		84691A7325BC8140009C8673 /* UINavigationController+Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Hero.swift"; sourceTree = "<group>"; };
 		847702D8256AA485001CA8EE /* NetworkService+Episodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+Episodes.swift"; sourceTree = "<group>"; };
 		847702DD256AA4B9001CA8EE /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		847702E2256AA690001CA8EE /* EpisodesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewModel.swift; sourceTree = "<group>"; };
@@ -291,6 +295,8 @@
 				848BAE42258FB91900821379 /* UICollectionView+EmptyMessage.swift */,
 				84C2FF502597170C0058C4BB /* UITableView+Loading.swift */,
 				84C2FF55259725300058C4BB /* UICollectionView+Loading.swift */,
+				84691A6E25BC8114009C8673 /* UIViewController+Hero.swift */,
+				84691A7325BC8140009C8673 /* UINavigationController+Hero.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -532,11 +538,13 @@
 				84DA09C72598AFA400A0B5A6 /* PickerTextField.swift in Sources */,
 				84A1FAF1257D6DD7003F2CCF /* CharacterCollectionViewCell.swift in Sources */,
 				84ED0EEF25612CC1009CDC87 /* APIError.swift in Sources */,
+				84691A7425BC8140009C8673 /* UINavigationController+Hero.swift in Sources */,
 				84C2FF512597170C0058C4BB /* UITableView+Loading.swift in Sources */,
 				8487E6FD256147EF008FB8C3 /* NetworkService+Locations.swift in Sources */,
 				84421C502569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift in Sources */,
 				8497E5192597384E00EA4687 /* CharacterFilterViewController.swift in Sources */,
 				8487E6F8256146B2008FB8C3 /* GeneralAPIResponse.swift in Sources */,
+				84691A6F25BC8114009C8673 /* UIViewController+Hero.swift in Sources */,
 				84F4F14F257B9B1C00A686A8 /* Character.swift in Sources */,
 				8487E6F3256144C9008FB8C3 /* Location.swift in Sources */,
 				84A1FAEC257D69BC003F2CCF /* CharactersViewModel.swift in Sources */,

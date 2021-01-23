@@ -91,13 +91,12 @@ class CharacterCollectionViewCell: UICollectionViewCell {
     }
     
     func set(with character: Character) {
-        characterImageView.hero.id = character.uuid.uuidString
+        characterImageView.heroID = character.uuid.uuidString
         guard let imageURL = URL(string: character.imageURL) else { return }
         characterImageView.sd_setImage(with: imageURL)
         nameLabel.text = character.name
         statusImageView.tintColor = character.status == "Alive" ? .green : (character.status == "Dead" ? .red : .gray)
         statusLabel.text = "\(character.status) - \(character.species)"
-        
     }
     
     required init?(coder: NSCoder) {
