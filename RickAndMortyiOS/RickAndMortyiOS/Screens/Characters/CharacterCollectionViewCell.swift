@@ -92,6 +92,7 @@ class CharacterCollectionViewCell: UICollectionViewCell {
     
     func set(with character: Character) {
         characterImageView.heroID = character.uuid.uuidString
+        nameLabel.heroID = character.name
         guard let imageURL = URL(string: character.imageURL) else { return }
         characterImageView.sd_setImage(with: imageURL)
         nameLabel.text = character.name

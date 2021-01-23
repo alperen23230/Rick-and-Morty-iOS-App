@@ -115,6 +115,7 @@ extension CharactersViewController: UICollectionViewDelegate {
         let characterDetailVC = CharacterDetailViewController(character: currentCharacter)
         
         characterDetailVC.characterImageView.heroID = currentCharacter.uuid.uuidString
+        characterDetailVC.nameLabel.heroID = currentCharacter.name
         
         showHero(characterDetailVC)
        

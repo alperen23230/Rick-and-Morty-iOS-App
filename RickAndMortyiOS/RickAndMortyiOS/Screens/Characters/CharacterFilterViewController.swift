@@ -18,6 +18,7 @@ class CharacterFilterViewController: UIViewController {
     @UsesAutoLayout
     private var genderTextField = PickerTextField()
     private var filterButton = CustomButton(backgroundColor: .rickBlue, title: "Filter")
+    private var clearFilterButton = CustomButton(backgroundColor: .rickBlue, title: "Clear")
     
     private var statusPickerView = UIPickerView()
     private var genderPickerView = UIPickerView()
@@ -66,10 +67,12 @@ class CharacterFilterViewController: UIViewController {
     private func configureViews() {
         
         configureTextFields()
-        configureFilterButton()
+        configureButtons()
+        
         
         view.addSubview(statusTextField)
         view.addSubview(genderTextField)
+        view.addSubview(clearFilterButton)
         view.addSubview(filterButton)
         
         NSLayoutConstraint.activate([
@@ -84,10 +87,14 @@ class CharacterFilterViewController: UIViewController {
             genderTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             filterButton.topAnchor.constraint(equalTo: genderTextField.bottomAnchor, constant:  view.frame.size.height * 0.03),
-            
             filterButton.widthAnchor.constraint(equalToConstant: ScreenSize.width * 0.40),
             filterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            filterButton.heightAnchor.constraint(equalToConstant: view.frame.size.height * 0.04)
+            filterButton.heightAnchor.constraint(equalToConstant: view.frame.size.height * 0.04),
+            
+            clearFilterButton.topAnchor.constraint(equalTo: filterButton.bottomAnchor, constant:  view.frame.size.height * 0.01),
+            clearFilterButton.widthAnchor.constraint(equalToConstant: ScreenSize.width * 0.40),
+            clearFilterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            clearFilterButton.heightAnchor.constraint(equalToConstant: view.frame.size.height * 0.04)
             
         ])
     }
@@ -119,13 +126,21 @@ class CharacterFilterViewController: UIViewController {
         genderTextField.textColor = .rickBlue
     }
     
-    private func configureFilterButton() {
+    private func configureButtons() {
         filterButton.addTarget(self, action: #selector(filterButtonClicked), for: .touchUpInside)
+        clearFilterButton.addTarget(self, action: #selector(clearFilterButtonClicked), for: .touchUpInside)
     }
     
     @objc private func filterButtonClicked() {
         let status = statusTextField.text ?? ""
         let gender = genderTextField.text ?? ""
+        filterDelegate.didFilterTapped(selectedStatus: status, selectedGender: gender)
+        dismiss(animated: true)
+    }
+    
+    @objc private func clearFilterButtonClicked() {
+        let status = ""
+        let gender = ""
         filterDelegate.didFilterTapped(selectedStatus: status, selectedGender: gender)
         dismiss(animated: true)
     }
