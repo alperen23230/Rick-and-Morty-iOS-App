@@ -12,6 +12,7 @@ This is a sample iOS 13+ UIKit project using:
 - [x] Hero Animation
 - [x] Dependency Injection
 - [ ] Cache option with Core Data
+- [ ] iOS 14 widget support
 
 **Feel free to contribute**
 
