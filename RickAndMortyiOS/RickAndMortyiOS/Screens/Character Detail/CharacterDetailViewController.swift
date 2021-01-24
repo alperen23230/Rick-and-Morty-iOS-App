@@ -9,24 +9,23 @@ import UIKit
 import SDWebImage
 
 class CharacterDetailViewController: UIViewController {
-    
-    var character: Character
-    
+    //UI Variables
     @UsesAutoLayout
     var characterImageView = UIImageView()
     @UsesAutoLayout
     var nameLabel = UILabel()
     @UsesAutoLayout
-    var genderLabel = UILabel()
+    private var genderLabel = UILabel()
     @UsesAutoLayout
-    var speciesLabel = UILabel()
+    private var speciesLabel = UILabel()
     @UsesAutoLayout
-    var labelsStackView = UIStackView()
+    private var labelsStackView = UIStackView()
+    //Variables
+    private var character: Character
     
     init(character: Character) {
         self.character = character
         super.init(nibName: nil, bundle: nil)
-        
     }
     
     required init?(coder: NSCoder) {
@@ -62,6 +61,7 @@ class CharacterDetailViewController: UIViewController {
         characterImageView.sd_setImage(with: imageURL)
         view.addSubview(characterImageView)
     }
+    
     private func configureLabels() {
         nameLabel.text = "Name: \(character.name)"
         nameLabel.font = .preferredFont(forTextStyle: .title1)
@@ -98,5 +98,4 @@ class CharacterDetailViewController: UIViewController {
             labelsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8.0),
         ])
     }
-    
 }

@@ -19,8 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func setNavBar() {
-        
+    private func setNavBar() {
         let appearance = UINavigationBarAppearance()
         
         appearance.titleTextAttributes = [.foregroundColor: UIColor.rickBlue]
@@ -31,7 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
-        
     }
     
     
@@ -54,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate: Resolving {
-    func setupRegistrations(){
+    private func setupRegistrations(){
         resolver.register { LocationsViewModel() }
         resolver.register { EpisodesViewModel() }
         resolver.register { CharactersViewModel() }

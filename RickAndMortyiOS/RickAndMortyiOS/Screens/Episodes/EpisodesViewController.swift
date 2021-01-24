@@ -10,11 +10,11 @@ import Combine
 import Resolver
 
 class EpisodesViewController: UIViewController {
-    
+    //UI Variables
     @UsesAutoLayout
     private var tableView = UITableView(frame: .zero, style: .insetGrouped)
     private let searchController = UISearchController()
-    
+    //Variables
     private var dataSource: UITableViewDiffableDataSource<Section, Episode>!
     private var cancellables = Set<AnyCancellable>()
     @LazyInjected private var episodesViewModel: EpisodesViewModel

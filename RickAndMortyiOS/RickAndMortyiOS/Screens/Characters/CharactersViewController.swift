@@ -11,10 +11,10 @@ import Resolver
 import Hero
 
 class CharactersViewController: UIViewController {
-    
+    //UI Variable
     private var collectionView: UICollectionView!
     private let searchController = UISearchController()
-    
+    //Variables
     private var dataSource: UICollectionViewDiffableDataSource<Section, Character>!
     private var cancellables = Set<AnyCancellable>()
     @LazyInjected private var charactersViewModel: CharactersViewModel
