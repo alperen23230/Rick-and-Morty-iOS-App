@@ -16,8 +16,8 @@ This is a sample iOS 13+ UIKit project using:
 **Feel free to contribute**
 
 
-![Characters Screen](https://user-images.githubusercontent.com/34453494/105626891-2666f200-5e44-11eb-913b-a1453425dd06.mov)
-![Character Search](https://user-images.githubusercontent.com/34453494/105626874-fddef800-5e43-11eb-8b4c-e6040e47c670.mov)
+![Characters Screen](https://user-images.githubusercontent.com/34453494/105627178-40a1cf80-5e46-11eb-8883-81d68deb2607.gif)
+![Character Search](https://user-images.githubusercontent.com/34453494/105627142-f4ef2600-5e45-11eb-9a26-73137b8a5679.gif)
 
 ## License
 
