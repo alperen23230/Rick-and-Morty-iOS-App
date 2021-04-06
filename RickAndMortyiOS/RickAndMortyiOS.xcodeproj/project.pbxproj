@@ -11,7 +11,6 @@
 		840814FA254D869C003655D2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840814F9254D869C003655D2 /* SceneDelegate.swift */; };
 		84081501254D86A0003655D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84081500254D86A0003655D2 /* Assets.xcassets */; };
 		84081504254D86A0003655D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84081502254D86A0003655D2 /* LaunchScreen.storyboard */; };
-		8408150F254D86A0003655D2 /* RickAndMortyiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8408150E254D86A0003655D2 /* RickAndMortyiOSTests.swift */; };
 		8408151A254D86A0003655D2 /* RickAndMortyiOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84081519254D86A0003655D2 /* RickAndMortyiOSUITests.swift */; };
 		8408153B254D89DE003655D2 /* MainAppTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8408153A254D89DE003655D2 /* MainAppTabBarViewController.swift */; };
 		8408154E254D8B1D003655D2 /* CharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8408154D254D8B1D003655D2 /* CharactersViewController.swift */; };
@@ -22,6 +21,7 @@
 		84081569254D8FDE003655D2 /* UIColor+CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84081568254D8FDE003655D2 /* UIColor+CustomColor.swift */; };
 		84269EE9258E5674008E3F9A /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 84269EE8258E5674008E3F9A /* SDWebImage */; };
 		84269EEB258E5674008E3F9A /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 84269EEA258E5674008E3F9A /* SDWebImageMapKit */; };
+		842B645D261CAAE9004C3DDF /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B645C261CAAE9004C3DDF /* NetworkServiceTests.swift */; };
 		842D8C3525612F5E007AD847 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D8C3425612F5E007AD847 /* NetworkService.swift */; };
 		84421C502569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84421C4F2569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift */; };
 		84421C58256958C000C21ED8 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84421C57256958C000C21ED8 /* UIView+AutoLayout.swift */; };
@@ -80,7 +80,6 @@
 		84081503254D86A0003655D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84081505254D86A0003655D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8408150A254D86A0003655D2 /* RickAndMortyiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RickAndMortyiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8408150E254D86A0003655D2 /* RickAndMortyiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickAndMortyiOSTests.swift; sourceTree = "<group>"; };
 		84081510254D86A0003655D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84081515254D86A0003655D2 /* RickAndMortyiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RickAndMortyiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84081519254D86A0003655D2 /* RickAndMortyiOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickAndMortyiOSUITests.swift; sourceTree = "<group>"; };
@@ -92,6 +91,7 @@
 		8408155D254D8C6B003655D2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		84081562254D8F11003655D2 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		84081568254D8FDE003655D2 /* UIColor+CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColor.swift"; sourceTree = "<group>"; };
+		842B645C261CAAE9004C3DDF /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
 		842D8C3425612F5E007AD847 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		84421C4F2569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutPropertyWrapper.swift; sourceTree = "<group>"; };
 		84421C57256958C000C21ED8 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
@@ -159,6 +159,7 @@
 				8408150D254D86A0003655D2 /* RickAndMortyiOSTests */,
 				84081518254D86A0003655D2 /* RickAndMortyiOSUITests */,
 				840814F5254D869C003655D2 /* Products */,
+				84BFDA51261CA1CC00682BD1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -189,8 +190,8 @@
 		8408150D254D86A0003655D2 /* RickAndMortyiOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				8408150E254D86A0003655D2 /* RickAndMortyiOSTests.swift */,
 				84081510254D86A0003655D2 /* Info.plist */,
+				842B645C261CAAE9004C3DDF /* NetworkServiceTests.swift */,
 			);
 			path = RickAndMortyiOSTests;
 			sourceTree = "<group>";
@@ -339,6 +340,13 @@
 			path = "Custom Views";
 			sourceTree = "<group>";
 		};
+		84BFDA51261CA1CC00682BD1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		84ED0EE125612AD8009CDC87 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,6 +430,8 @@
 				8408150C254D86A0003655D2 /* PBXTargetDependency */,
 			);
 			name = RickAndMortyiOSTests;
+			packageProductDependencies = (
+			);
 			productName = RickAndMortyiOSTests;
 			productReference = 8408150A254D86A0003655D2 /* RickAndMortyiOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -567,7 +577,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8408150F254D86A0003655D2 /* RickAndMortyiOSTests.swift in Sources */,
+				842B645D261CAAE9004C3DDF /* NetworkServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -776,6 +786,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alperenunal.RickAndMortyiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -798,6 +809,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alperenunal.RickAndMortyiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
