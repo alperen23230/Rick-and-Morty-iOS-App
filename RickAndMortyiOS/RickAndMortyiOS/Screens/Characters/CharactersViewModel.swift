@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import Resolver
 
 class CharactersViewModel {
     
@@ -20,6 +21,8 @@ class CharactersViewModel {
     var currentGender = ""
     var currentPage = 1
     var canLoadMorePages = true
+
+    @LazyInjected private var networkService: NetworkService
     
     //Get characters from API
     func getCharacters() {
@@ -27,7 +30,7 @@ class CharactersViewModel {
             return
         }
         isLoadingPage = true
-        NetworkService.sharedInstance.getCharacters(for: currentPage, filterByName: currentSearchQuery, filterByGender: currentGender, filterByStatus: currentStatus).sink {[weak self] (completion) in
+        networkService.getCharacters(for: currentPage, filterByName: currentSearchQuery, filterByGender: currentGender, filterByStatus: currentStatus).sink {[weak self] (completion) in
             if case .failure(let apiError) = completion {
                 self?.charactersSubject.value.removeAll()
                 self?.isFirstLoadingPageSubject.value = false

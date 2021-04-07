@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import Resolver
 
 class EpisodesViewModel {
     private var cancellables = Set<AnyCancellable>()
@@ -18,13 +19,15 @@ class EpisodesViewModel {
     var currentSearchQuery = ""
     var currentPage = 1
     var canLoadMorePages = true
+
+    @LazyInjected private var networkService: NetworkService
     
     func getEpisodes() {
         guard !isLoadingPage && canLoadMorePages else {
             return
         }
         isLoadingPage = true
-        NetworkService.sharedInstance.getEpisodes(for: currentPage, filterByName: currentSearchQuery).sink {[weak self] (completion) in
+        networkService.getEpisodes(for: currentPage, filterByName: currentSearchQuery).sink {[weak self] (completion) in
             if case .failure(let apiError) = completion {
                 self?.isLoadingPage = false
                 print(apiError.errorMessage)

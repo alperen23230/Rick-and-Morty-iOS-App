@@ -56,6 +56,7 @@ extension AppDelegate: Resolving {
         resolver.register { LocationsViewModel() }
         resolver.register { EpisodesViewModel() }
         resolver.register { CharactersViewModel() }
+        resolver.register { NetworkService() }
     }
 }
 
