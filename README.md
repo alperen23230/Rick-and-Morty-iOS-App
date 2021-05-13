@@ -11,8 +11,9 @@ This is a sample iOS 13+ UIKit project using:
 - [x] Dark Mode
 - [x] Hero Animation
 - [x] Dependency Injection
+- [x] iOS 14 widget support
 - [ ] Cache option with Core Data
-- [ ] iOS 14 widget support
+
 
 **Feel free to contribute**
 
