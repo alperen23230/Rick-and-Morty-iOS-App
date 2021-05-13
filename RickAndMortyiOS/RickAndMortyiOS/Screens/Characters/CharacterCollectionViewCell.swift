@@ -90,7 +90,7 @@ class CharacterCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    func set(with character: Character) {
+    func set(with character: RickAndMortyCharacter) {
         characterImageView.heroID = character.uuid.uuidString
         nameLabel.heroID = character.name
         guard let imageURL = URL(string: character.imageURL) else { return }

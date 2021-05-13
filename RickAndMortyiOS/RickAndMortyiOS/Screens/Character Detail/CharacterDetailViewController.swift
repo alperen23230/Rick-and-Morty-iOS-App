@@ -21,9 +21,9 @@ class CharacterDetailViewController: UIViewController {
     @UsesAutoLayout
     private var labelsStackView = UIStackView()
     //Variables
-    private var character: Character
+    private var character: RickAndMortyCharacter
     
-    init(character: Character) {
+    init(character: RickAndMortyCharacter) {
         self.character = character
         super.init(nibName: nil, bundle: nil)
     }

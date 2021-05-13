@@ -15,7 +15,7 @@ class CharactersViewController: UIViewController {
     private var collectionView: UICollectionView!
     private let searchController = UISearchController()
     //Variables
-    private var dataSource: UICollectionViewDiffableDataSource<Section, Character>!
+    private var dataSource: UICollectionViewDiffableDataSource<Section, RickAndMortyCharacter>!
     private var cancellables = Set<AnyCancellable>()
     @LazyInjected private var charactersViewModel: CharactersViewModel
     
@@ -103,7 +103,7 @@ extension CharactersViewController: UICollectionViewDelegate {
     }
     
     private func configureDataSource(){
-        dataSource = UICollectionViewDiffableDataSource<Section, Character>(collectionView: collectionView) {(collectionView, indexPath, characterModel) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, RickAndMortyCharacter>(collectionView: collectionView) {(collectionView, indexPath, characterModel) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCollectionViewCell.reuseIdentifier, for: indexPath) as? CharacterCollectionViewCell
             cell?.set(with: characterModel)
             return cell
@@ -121,8 +121,8 @@ extension CharactersViewController: UICollectionViewDelegate {
        
     }
     
-    private func createSnapshot(from addedCharacters: [Character]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Character>()
+    private func createSnapshot(from addedCharacters: [RickAndMortyCharacter]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, RickAndMortyCharacter>()
         snapshot.appendSections([.main])
         snapshot.appendItems(addedCharacters)
         dataSource.apply(snapshot, animatingDifferences: true)

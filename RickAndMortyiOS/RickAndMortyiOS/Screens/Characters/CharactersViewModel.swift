@@ -14,7 +14,7 @@ class CharactersViewModel {
     private var cancellables = Set<AnyCancellable>()
     private var isLoadingPage = false
     
-    let charactersSubject = CurrentValueSubject<[Character], Never>([])
+    let charactersSubject = CurrentValueSubject<[RickAndMortyCharacter], Never>([])
     let isFirstLoadingPageSubject = CurrentValueSubject<Bool, Never>(true)
     var currentSearchQuery = ""
     var currentStatus = ""

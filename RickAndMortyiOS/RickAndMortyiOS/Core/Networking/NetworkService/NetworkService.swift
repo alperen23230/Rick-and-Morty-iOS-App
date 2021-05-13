@@ -12,30 +12,28 @@ enum HTTPTypes: String {
     case GET = "GET", POST = "POST"
 }
 
-protocol NetworkServiceProtocol {
+protocol NetworkServiceProtocol: AnyObject {
     var cancellables: Set<AnyCancellable> { get set }
+    var customDecoder: JSONDecoder { get }
     func fetchWithURLRequest<T: Decodable>(_ urlRequest: URLRequest) -> AnyPublisher<T, Error>
 }
 
 class NetworkService: NetworkServiceProtocol {
-
+    
     var cancellables = Set<AnyCancellable>()
-    private var customDecoder: JSONDecoder!
+    let customDecoder = JSONDecoder()
 
     init() {
         setCustomDecoder()
     }
 
-    private func setCustomDecoder() {
+    func setCustomDecoder() {
         let formatter = DateFormatter()
-
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-
-        customDecoder = JSONDecoder()
+        
         customDecoder.dateDecodingStrategy = .formatted(formatter)
     }
-
 
     func fetchWithURLRequest<T: Decodable>(_ urlRequest: URLRequest) -> AnyPublisher<T, Error> {
         URLSession.shared.dataTaskPublisher(for: urlRequest)

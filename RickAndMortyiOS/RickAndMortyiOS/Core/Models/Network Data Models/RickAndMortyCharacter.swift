@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Character: Decodable, Hashable {
+struct RickAndMortyCharacter: Decodable, Hashable {
     let uuid = UUID()
     let id: Int
     let name: String
