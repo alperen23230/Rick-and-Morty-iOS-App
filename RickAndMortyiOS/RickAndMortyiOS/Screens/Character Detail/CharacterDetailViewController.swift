@@ -66,14 +66,17 @@ class CharacterDetailViewController: UIViewController {
         nameLabel.text = "Name: \(character.name)"
         nameLabel.font = .preferredFont(forTextStyle: .title1)
         nameLabel.textColor = .rickBlue
+        nameLabel.accessibilityIdentifier = "characterName"
         
         genderLabel.text = "Gender: \(character.gender)"
         genderLabel.font = .preferredFont(forTextStyle: .title2)
         genderLabel.textColor = .rickGreen
+        genderLabel.accessibilityIdentifier = "characterGender"
         
         speciesLabel.text = "Species: \(character.species)"
         speciesLabel.font = .preferredFont(forTextStyle: .title2)
         speciesLabel.textColor = .rickGreen
+        speciesLabel.accessibilityIdentifier = "characterSpecies"
         
         labelsStackView.axis = .vertical
         labelsStackView.alignment = .leading

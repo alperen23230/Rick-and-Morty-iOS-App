@@ -38,10 +38,12 @@ class CharacterCollectionViewCell: UICollectionViewCell {
         nameLabel.adjustsFontSizeToFitWidth = true
         nameLabel.lineBreakMode = .byTruncatingTail
         nameLabel.textColor = .white
+        nameLabel.accessibilityIdentifier = "characterName"
         
         statusLabel.font = .preferredFont(forTextStyle: .footnote)
         statusLabel.lineBreakMode = .byTruncatingTail
         statusLabel.textColor = .secondaryLabel
+        statusLabel.accessibilityIdentifier = "characterStatus"
         
         characterImageView.layer.masksToBounds = true
         characterImageView.layer.cornerRadius = 10.0
