@@ -24,7 +24,6 @@
 		841EFFBC27D24E3100506704 /* CharactersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EFFBB27D24E3100506704 /* CharactersRequest.swift */; };
 		84269EE9258E5674008E3F9A /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 84269EE8258E5674008E3F9A /* SDWebImage */; };
 		84269EEB258E5674008E3F9A /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 84269EEA258E5674008E3F9A /* SDWebImageMapKit */; };
-		842B645D261CAAE9004C3DDF /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B645C261CAAE9004C3DDF /* NetworkServiceTests.swift */; };
 		842D8C3525612F5E007AD847 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D8C3425612F5E007AD847 /* NetworkService.swift */; };
 		84421C502569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84421C4F2569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift */; };
 		84421C58256958C000C21ED8 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84421C57256958C000C21ED8 /* UIView+AutoLayout.swift */; };
@@ -77,6 +76,8 @@
 		84EF9C7327D2518700F24CF5 /* LocationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF9C7227D2518700F24CF5 /* LocationsRequest.swift */; };
 		84EF9C7527D253D700F24CF5 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF9C7427D253D700F24CF5 /* NetworkServiceProtocol.swift */; };
 		84EF9C7627D2542A00F24CF5 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF9C7427D253D700F24CF5 /* NetworkServiceProtocol.swift */; };
+		84EF9C7827D25AE000F24CF5 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF9C7727D25AE000F24CF5 /* CustomError.swift */; };
+		84EF9C7927D25AE800F24CF5 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF9C7727D25AE000F24CF5 /* CustomError.swift */; };
 		84F4F14A257B950B00A686A8 /* UITableView+EmptyMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4F149257B950B00A686A8 /* UITableView+EmptyMessage.swift */; };
 		84F4F14F257B9B1C00A686A8 /* RickAndMortyCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4F14E257B9B1C00A686A8 /* RickAndMortyCharacter.swift */; };
 		84F4F154257B9C8500A686A8 /* NetworkService+Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4F153257B9C8500A686A8 /* NetworkService+Characters.swift */; };
@@ -142,7 +143,6 @@
 		841EFFB427D24ACA00506704 /* NetworkRequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestProtocol.swift; sourceTree = "<group>"; };
 		841EFFB827D24B3000506704 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		841EFFBB27D24E3100506704 /* CharactersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRequest.swift; sourceTree = "<group>"; };
-		842B645C261CAAE9004C3DDF /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
 		842D8C3425612F5E007AD847 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		84421C4F2569587C00C21ED8 /* AutoLayoutPropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutPropertyWrapper.swift; sourceTree = "<group>"; };
 		84421C57256958C000C21ED8 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
@@ -179,6 +179,7 @@
 		84EF9C7027D250E600F24CF5 /* EpisodesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesRequest.swift; sourceTree = "<group>"; };
 		84EF9C7227D2518700F24CF5 /* LocationsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsRequest.swift; sourceTree = "<group>"; };
 		84EF9C7427D253D700F24CF5 /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
+		84EF9C7727D25AE000F24CF5 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		84F4F149257B950B00A686A8 /* UITableView+EmptyMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+EmptyMessage.swift"; sourceTree = "<group>"; };
 		84F4F14E257B9B1C00A686A8 /* RickAndMortyCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickAndMortyCharacter.swift; sourceTree = "<group>"; };
 		84F4F153257B9C8500A686A8 /* NetworkService+Characters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+Characters.swift"; sourceTree = "<group>"; };
@@ -264,7 +265,6 @@
 			isa = PBXGroup;
 			children = (
 				84081510254D86A0003655D2 /* Info.plist */,
-				842B645C261CAAE9004C3DDF /* NetworkServiceTests.swift */,
 			);
 			path = RickAndMortyiOSTests;
 			sourceTree = "<group>";
@@ -399,6 +399,7 @@
 			isa = PBXGroup;
 			children = (
 				841EFFB827D24B3000506704 /* HTTPMethod.swift */,
+				84EF9C7727D25AE000F24CF5 /* CustomError.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -706,6 +707,7 @@
 				8487E6F3256144C9008FB8C3 /* Location.swift in Sources */,
 				84A1FAEC257D69BC003F2CCF /* CharactersViewModel.swift in Sources */,
 				84081553254D8B2F003655D2 /* EpisodesViewController.swift in Sources */,
+				84EF9C7827D25AE000F24CF5 /* CustomError.swift in Sources */,
 				840814F8254D869C003655D2 /* AppDelegate.swift in Sources */,
 				847702DE256AA4B9001CA8EE /* Episode.swift in Sources */,
 				848BAE43258FB91900821379 /* UICollectionView+EmptyMessage.swift in Sources */,
@@ -727,7 +729,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				842B645D261CAAE9004C3DDF /* NetworkServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,6 +745,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84EF9C6B27D2506D00F24CF5 /* NetworkService.swift in Sources */,
+				84EF9C7927D25AE800F24CF5 /* CustomError.swift in Sources */,
 				84DB6558262C3F01001EFEF9 /* RickAndMortyCharacter.swift in Sources */,
 				84EF9C6F27D2509900F24CF5 /* HTTPMethod.swift in Sources */,
 				84DB6566262C46AF001EFEF9 /* NetworkService+Characters.swift in Sources */,

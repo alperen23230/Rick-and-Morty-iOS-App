@@ -27,7 +27,9 @@ class LocationsViewController: UIViewController {
         setViewModelListeners()
         configureSearchController()
         setSearchControllerListeners()
-        locationsViewModel.getLocations()
+        Task {
+            await locationsViewModel.getLocations()
+        }
     }
     
     private func configureNavBar() {
@@ -36,16 +38,18 @@ class LocationsViewController: UIViewController {
     }
     
     private func setViewModelListeners() {
-        Publishers.CombineLatest(locationsViewModel.isFirstLoadingPageSubject, locationsViewModel.locationsSubject).sink {[weak self] (isLoading, locations) in
-            if isLoading {
-                self?.tableView.setLoading()
-            } else {
-                self?.tableView.restore()
-                self?.createSnapshot(from: locations)
-                if locations.isEmpty {
-                    self?.tableView.setEmptyMessage(message: "No location found")
+        Publishers.CombineLatest(locationsViewModel.isFirstLoadingPageSubject, locationsViewModel.locationsSubject).sink { [weak self] (isLoading, locations) in
+            DispatchQueue.main.async {
+                if isLoading {
+                    self?.tableView.setLoading()
                 } else {
                     self?.tableView.restore()
+                    self?.createSnapshot(from: locations)
+                    if locations.isEmpty {
+                        self?.tableView.setEmptyMessage(message: "No location found")
+                    } else {
+                        self?.tableView.restore()
+                    }
                 }
             }
         }
@@ -89,7 +93,9 @@ extension LocationsViewController: UITableViewDelegate {
         let scrollViewHeight = scrollView.frame.size.height
         
         if position > (tableViewContentSizeHeight - 100 - scrollViewHeight) {
-            locationsViewModel.getLocations()
+            Task {
+                await locationsViewModel.getLocations()
+            }
         }
     }
 }
@@ -101,30 +107,34 @@ extension LocationsViewController: UISearchBarDelegate {
         searchController.obscuresBackgroundDuringPresentation = false
     }
     
-    private func setSearchControllerListeners(){
+    private func setSearchControllerListeners() {
         NotificationCenter.default.publisher(for: UISearchTextField.textDidChangeNotification, object: searchController.searchBar.searchTextField)
             .map {
                 ($0.object as! UISearchTextField).text
             }
             .debounce(for: 0.3, scheduler: DispatchQueue.main)
             .removeDuplicates()
-            .sink {[weak self] (searchQuery) in
-                self?.getLocationsBySearchQuery(searchQuery: searchQuery ?? "")
+            .sink { (searchQuery) in
+                Task { [weak self] in
+                    await self?.getLocationsBySearchQuery(searchQuery: searchQuery ?? "")
+                }
             }
             .store(in: &cancellables)
     }
     
-    private func getLocationsBySearchQuery(searchQuery: String) {
+    private func getLocationsBySearchQuery(searchQuery: String) async {
         locationsViewModel.currentSearchQuery = searchQuery
         locationsViewModel.canLoadMorePages = true
         locationsViewModel.currentPage = 1
         locationsViewModel.locationsSubject.value.removeAll()
-        locationsViewModel.getLocations()
+        await locationsViewModel.getLocations()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         if locationsViewModel.currentSearchQuery != "" {
-            getLocationsBySearchQuery(searchQuery: "")
+            Task {
+                await getLocationsBySearchQuery(searchQuery: "")
+            }
         }
     }
 }

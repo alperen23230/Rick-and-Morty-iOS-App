@@ -21,26 +21,20 @@ class LocationsViewModel {
     var canLoadMorePages = true
 
     @LazyInjected private var networkService: NetworkService
-
-    func getLocations() {
-        guard !isLoadingPage && canLoadMorePages else {
-            return
-        }
-        isLoadingPage = true
-        networkService.getLocations(for: currentPage, filterByName: currentSearchQuery).sink { [weak self] (completion) in
-            if case .failure(let apiError) = completion {
-                self?.isLoadingPage = false
-                print(apiError.errorMessage)
+    
+    func getLocations() async {
+        let request = LocationsRequest(name: currentSearchQuery, page: currentPage)
+        do {
+            let locationResponseModel = try await networkService.fetch(request)
+            isLoadingPage = false
+            if locationResponseModel.pageInfo.pageCount == currentPage {
+                canLoadMorePages = false
             }
-        } receiveValue: { [weak self] (locationResponseModel) in
-            self?.isLoadingPage = false
-            if locationResponseModel.pageInfo.pageCount == self?.currentPage {
-                self?.canLoadMorePages = false
-            }
-            self?.currentPage += 1
-            self?.locationsSubject.value.append(contentsOf: locationResponseModel.results)
-            self?.isFirstLoadingPageSubject.value = false
+            currentPage += 1
+            locationsSubject.value.append(contentsOf: locationResponseModel.results)
+            isFirstLoadingPageSubject.value = false
+        } catch {
+            print(error.localizedDescription)
         }
-            .store(in: &cancellables)
     }
 }
