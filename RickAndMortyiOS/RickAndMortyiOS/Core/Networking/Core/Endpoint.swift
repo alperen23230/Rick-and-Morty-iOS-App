@@ -12,6 +12,7 @@ struct Endpoint {
     var queryItems: [URLQueryItem] = []
 }
 
+// MARK: - Base URL
 extension Endpoint {
     var url: URL {
         var components = URLComponents()
@@ -30,6 +31,7 @@ extension Endpoint {
     }
 }
 
+// MARK: - Endpoints
 extension Endpoint {
     static func getLocations(for name: String, page: Int) -> Self {
         Endpoint(

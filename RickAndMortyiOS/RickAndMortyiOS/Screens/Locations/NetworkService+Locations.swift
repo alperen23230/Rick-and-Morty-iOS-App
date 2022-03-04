@@ -10,11 +10,8 @@ import Combine
 
 extension NetworkService {
     func getLocations(for page: Int, filterByName: String) -> Future<GeneralAPIResponse<Location>, APIError> {
-       
-        var urlRequest = URLRequest(url: Endpoint.getLocations(for: filterByName, page: page).url)
-        
-        urlRequest.httpMethod = HTTPTypes.GET.rawValue
-        let publisher: AnyPublisher<GeneralAPIResponse<Location>, Error> = fetchWithURLRequest(urlRequest)
+        let request = LocationsRequest(name: filterByName, page: page)
+        let publisher = fetchWithURLRequest(request)
         return Future { promise in
             publisher.sink { (completion) in
                 if case .failure(let error) = completion, let apiError = error as? APIError {

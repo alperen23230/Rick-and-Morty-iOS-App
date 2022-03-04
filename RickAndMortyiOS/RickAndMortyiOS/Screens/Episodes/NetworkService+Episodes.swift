@@ -10,11 +10,8 @@ import Combine
 
 extension NetworkService {
     func getEpisodes(for page: Int, filterByName: String) -> Future<GeneralAPIResponse<Episode>, APIError> {
-        
-        var urlRequest = URLRequest(url:Endpoint.getEpisodes(for: filterByName, page: page).url)
-        
-        urlRequest.httpMethod = HTTPTypes.GET.rawValue
-        let publisher: AnyPublisher<GeneralAPIResponse<Episode>, Error> = fetchWithURLRequest(urlRequest)
+        let request = EpisodesRequest(name: filterByName, page: page)
+        let publisher = fetchWithURLRequest(request)
         return Future { promise in
             publisher.sink { (completion) in
                 if case .failure(let error) = completion, let apiError = error as? APIError {
