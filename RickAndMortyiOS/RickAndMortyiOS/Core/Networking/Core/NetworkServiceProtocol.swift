@@ -9,8 +9,7 @@ import Foundation
 import Combine
 
 protocol NetworkServiceProtocol: AnyObject {
-    var cancellables: Set<AnyCancellable> { get set }
     var customDecoder: JSONDecoder { get }
     
-    func fetchWithURLRequest<T: NetworkRequestProtocol>(_ request: T) -> AnyPublisher<T.ResponseType, Error>
+    func fetch<T: NetworkRequestProtocol>(_ request: T) async throws -> T.ResponseType
 }

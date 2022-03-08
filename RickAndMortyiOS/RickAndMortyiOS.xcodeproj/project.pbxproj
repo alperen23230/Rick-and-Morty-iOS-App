@@ -59,7 +59,6 @@
 		84DB654C262C3C65001EFEF9 /* RickAndMortyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 84DB6547262C3C65001EFEF9 /* RickAndMortyWidget.intentdefinition */; };
 		84DB654F262C3C65001EFEF9 /* RickAndMortyWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 84DB653F262C3C64001EFEF9 /* RickAndMortyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		84DB6558262C3F01001EFEF9 /* RickAndMortyCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4F14E257B9B1C00A686A8 /* RickAndMortyCharacter.swift */; };
-		84DB6566262C46AF001EFEF9 /* NetworkService+Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4F153257B9C8500A686A8 /* NetworkService+Characters.swift */; };
 		84DB656B262C4781001EFEF9 /* GeneralAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8487E6F7256146B2008FB8C3 /* GeneralAPIResponse.swift */; };
 		84DB6575262C478B001EFEF9 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0EEE25612CC1009CDC87 /* APIError.swift */; };
 		84DB657A262C47AB001EFEF9 /* PageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8487E6EA25614400008FB8C3 /* PageInfo.swift */; };
@@ -78,7 +77,6 @@
 		84EF9C7927D25AE800F24CF5 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF9C7727D25AE000F24CF5 /* CustomError.swift */; };
 		84F4F14A257B950B00A686A8 /* UITableView+EmptyMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4F149257B950B00A686A8 /* UITableView+EmptyMessage.swift */; };
 		84F4F14F257B9B1C00A686A8 /* RickAndMortyCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4F14E257B9B1C00A686A8 /* RickAndMortyCharacter.swift */; };
-		84F4F154257B9C8500A686A8 /* NetworkService+Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4F153257B9C8500A686A8 /* NetworkService+Characters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,7 +176,6 @@
 		84EF9C7727D25AE000F24CF5 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		84F4F149257B950B00A686A8 /* UITableView+EmptyMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+EmptyMessage.swift"; sourceTree = "<group>"; };
 		84F4F14E257B9B1C00A686A8 /* RickAndMortyCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickAndMortyCharacter.swift; sourceTree = "<group>"; };
-		84F4F153257B9C8500A686A8 /* NetworkService+Characters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+Characters.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,7 +317,6 @@
 			isa = PBXGroup;
 			children = (
 				8408154D254D8B1D003655D2 /* CharactersViewController.swift */,
-				84F4F153257B9C8500A686A8 /* NetworkService+Characters.swift */,
 				84A1FAEB257D69BC003F2CCF /* CharactersViewModel.swift */,
 				84A1FAF0257D6DD6003F2CCF /* CharacterCollectionViewCell.swift */,
 				8497E5182597384E00EA4687 /* CharacterFilterViewController.swift */,
@@ -672,7 +668,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84F4F154257B9C8500A686A8 /* NetworkService+Characters.swift in Sources */,
 				842D8C3525612F5E007AD847 /* NetworkService.swift in Sources */,
 				84421C58256958C000C21ED8 /* UIView+AutoLayout.swift in Sources */,
 				84ED0EE325612B23009CDC87 /* Endpoint.swift in Sources */,
@@ -740,7 +735,6 @@
 				84EF9C7927D25AE800F24CF5 /* CustomError.swift in Sources */,
 				84DB6558262C3F01001EFEF9 /* RickAndMortyCharacter.swift in Sources */,
 				84EF9C6F27D2509900F24CF5 /* HTTPMethod.swift in Sources */,
-				84DB6566262C46AF001EFEF9 /* NetworkService+Characters.swift in Sources */,
 				844C22FB264D536E006CD190 /* ImageStore.swift in Sources */,
 				84DB656B262C4781001EFEF9 /* GeneralAPIResponse.swift in Sources */,
 				84EF9C6C27D2508100F24CF5 /* CharactersRequest.swift in Sources */,

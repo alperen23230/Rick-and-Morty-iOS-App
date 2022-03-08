@@ -11,7 +11,6 @@ import Resolver
 
 class CharactersViewModel {
     
-    private var cancellables = Set<AnyCancellable>()
     private var isLoadingPage = false
     
     let charactersSubject = CurrentValueSubject<[RickAndMortyCharacter], Never>([])
@@ -21,35 +20,34 @@ class CharactersViewModel {
     var currentGender = ""
     var currentPage = 1
     var canLoadMorePages = true
-
+    
     @LazyInjected private var networkService: NetworkService
     
-    //Get characters from API
-    func getCharacters() {
+    func getCharacters() async {
         guard !isLoadingPage && canLoadMorePages else {
             return
         }
         isLoadingPage = true
-        networkService.getCharacters(for: currentPage, filterByName: currentSearchQuery, filterByGender: currentGender, filterByStatus: currentStatus).sink {[weak self] (completion) in
-            if case .failure(let apiError) = completion {
-                self?.charactersSubject.value.removeAll()
-                self?.isFirstLoadingPageSubject.value = false
-                self?.isLoadingPage = false
+        let request = CharactersRequest(name: currentSearchQuery, status: currentStatus, gender: currentGender, page: currentPage)
+        do {
+            let characterResponseModel = try await networkService.fetch(request)
+            isLoadingPage = false
+            isFirstLoadingPageSubject.value = false
+            if currentPage == 1 {
+                charactersSubject.value.removeAll()
+            }
+            charactersSubject.value.append(contentsOf: characterResponseModel.results)
+            if characterResponseModel.pageInfo.pageCount == currentPage {
+                canLoadMorePages = false
+                return
+            }
+            currentPage += 1
+        } catch {
+            #warning("TODO: Handle error")
+            if let apiError = error as? APIError {
                 print(apiError.errorMessage)
             }
-        } receiveValue: {[weak self] (characterResponseModel) in
-            if self?.currentPage == 1 {
-                self?.charactersSubject.value.removeAll()
-            }
-            if characterResponseModel.pageInfo.pageCount == self?.currentPage {
-                self?.canLoadMorePages = false
-            }
-            self?.currentPage += 1
-            self?.charactersSubject.value.append(contentsOf: characterResponseModel.results)
-            self?.isFirstLoadingPageSubject.value = false
-            self?.isLoadingPage = false
+            print(error.localizedDescription)
         }
-        .store(in: &cancellables)
     }
-    
 }

@@ -60,7 +60,7 @@ class CharacterCollectionViewCell: UICollectionViewCell {
     private func configureStatusStackView() {
         statusStackView.axis  = .horizontal
         statusStackView.distribution  = .fillProportionally
-        statusStackView.alignment = .center
+        statusStackView.alignment = .leading
         statusStackView.spacing   = 4.0
         
         statusStackView.addArrangedSubview(statusImageView)

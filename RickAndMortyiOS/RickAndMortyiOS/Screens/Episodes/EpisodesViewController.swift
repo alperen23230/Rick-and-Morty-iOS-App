@@ -133,7 +133,6 @@ extension EpisodesViewController: UISearchBarDelegate {
         await episodesViewModel.getEpisodes()
     }
     
-    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         if episodesViewModel.currentSearchQuery != "" {
             Task {

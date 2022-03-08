@@ -27,7 +27,9 @@ class CharactersViewController: UIViewController {
         configureDataSource()
         setViewModelListeners()
         setSearchControllerListeners()
-        charactersViewModel.getCharacters()
+        Task {
+            await charactersViewModel.getCharacters()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,7 +49,8 @@ class CharactersViewController: UIViewController {
     }
     
     @objc private func filterButtonClicked() {
-        let characterFilterVC = CharacterFilterViewController(currentStatus: charactersViewModel.currentStatus, currentGender: charactersViewModel.currentGender)
+        let characterFilterVC = CharacterFilterViewController(currentStatus: charactersViewModel.currentStatus,
+                                                              currentGender: charactersViewModel.currentGender)
         characterFilterVC.filterDelegate = self
         characterFilterVC.modalPresentationStyle = .custom
         characterFilterVC.transitioningDelegate = self
@@ -79,16 +82,18 @@ class CharactersViewController: UIViewController {
     }
     
     private func setViewModelListeners() {
-        Publishers.CombineLatest(charactersViewModel.isFirstLoadingPageSubject, charactersViewModel.charactersSubject).sink {[weak self] (isLoading, characters) in
-            if isLoading {
-                self?.collectionView.setLoading()
-            } else {
-                self?.collectionView.restore()
-                self?.createSnapshot(from: characters)
-                if characters.isEmpty {
-                    self?.collectionView.setEmptyMessage(message: "No character found")
+        Publishers.CombineLatest(charactersViewModel.isFirstLoadingPageSubject, charactersViewModel.charactersSubject).sink { [weak self] (isLoading, characters) in
+            DispatchQueue.main.async {
+                if isLoading {
+                    self?.collectionView.setLoading()
                 } else {
                     self?.collectionView.restore()
+                    self?.createSnapshot(from: characters)
+                    if characters.isEmpty {
+                        self?.collectionView.setEmptyMessage(message: "No character found")
+                    } else {
+                        self?.collectionView.restore()
+                    }
                 }
             }
         }
@@ -135,11 +140,11 @@ extension CharactersViewController: UICollectionViewDelegate {
         let scrollViewHeight = scrollView.frame.size.height
         
         if position > (collectionViewContentSizeHeight - 100 - scrollViewHeight) {
-            charactersViewModel.getCharacters()
+            Task {
+                await charactersViewModel.getCharacters()
+            }
         }
     }
-    
-    
 }
 
 // MARK: - Search bar methods
@@ -157,23 +162,27 @@ extension CharactersViewController: UISearchBarDelegate {
             }
             .debounce(for: 0.3, scheduler: DispatchQueue.main)
             .removeDuplicates()
-            .sink {[weak self] (searchQuery) in
+            .sink { [weak self] (searchQuery) in
                 self?.charactersViewModel.isFirstLoadingPageSubject.value = true
-                self?.getCharactersBySearchQuery(searchQuery: searchQuery ?? "")
+                Task { [weak self] in
+                    await self?.getCharactersBySearchQuery(searchQuery: searchQuery ?? "")
+                }
             }
             .store(in: &cancellables)
     }
     
-    private func getCharactersBySearchQuery(searchQuery: String) {
+    private func getCharactersBySearchQuery(searchQuery: String) async {
         charactersViewModel.currentSearchQuery = searchQuery
         charactersViewModel.canLoadMorePages = true
         charactersViewModel.currentPage = 1
-        charactersViewModel.getCharacters()
+        await charactersViewModel.getCharacters()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         if charactersViewModel.currentSearchQuery != "" {
-            getCharactersBySearchQuery(searchQuery: "")
+            Task {
+                await getCharactersBySearchQuery(searchQuery: "")
+            }
         }
     }
 }
@@ -191,11 +200,12 @@ extension CharactersViewController: CharacterFilterDelegate {
     func didFilterTapped(selectedStatus: String, selectedGender: String) {
         charactersViewModel.currentStatus = selectedStatus
         charactersViewModel.currentGender = selectedGender
-        
         charactersViewModel.isFirstLoadingPageSubject.value = true
         charactersViewModel.canLoadMorePages = true
         charactersViewModel.currentPage = 1
-        charactersViewModel.getCharacters()
+        Task {
+            await charactersViewModel.getCharacters()
+        }
     }
 }
 

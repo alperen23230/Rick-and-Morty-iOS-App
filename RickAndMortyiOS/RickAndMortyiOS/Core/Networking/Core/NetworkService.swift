@@ -6,11 +6,9 @@
 //
 
 import Foundation
-import Combine
 
 class NetworkService: NetworkServiceProtocol {
-    
-    var cancellables = Set<AnyCancellable>()
+
     let customDecoder = JSONDecoder()
     
     init() {
@@ -25,28 +23,7 @@ class NetworkService: NetworkServiceProtocol {
         customDecoder.dateDecodingStrategy = .formatted(formatter)
     }
     
-    func fetchWithURLRequest<T: NetworkRequestProtocol>(_ request: T) -> AnyPublisher<T.ResponseType, Error> {
-        var urlRequest = URLRequest(url: request.endpoint.url)
-        urlRequest.httpMethod = request.method.rawValue
-        return URLSession.shared.dataTaskPublisher(for: urlRequest)
-            .mapError({ $0 as Error })
-            .flatMap({ result -> AnyPublisher<T.ResponseType, Error> in
-                guard let urlResponse = result.response as? HTTPURLResponse, (200...299).contains(urlResponse.statusCode) else {
-                    return Just(result.data)
-                        .decode(type: APIError.self, decoder: self.customDecoder).tryMap({ errorModel in
-                            throw errorModel
-                        })
-                        .eraseToAnyPublisher()
-                }
-                return Just(result.data).decode(type: T.ResponseType.self, decoder: self.customDecoder)
-                    .eraseToAnyPublisher()
-            })
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-    }
-    
     func fetch<T: NetworkRequestProtocol>(_ request: T) async throws -> T.ResponseType {
-        print(request.endpoint.url)
         var urlRequest = URLRequest(url: request.endpoint.url)
         urlRequest.httpMethod = request.method.rawValue
         let data: T.ResponseType = try await withCheckedThrowingContinuation { [weak self] continuation in
