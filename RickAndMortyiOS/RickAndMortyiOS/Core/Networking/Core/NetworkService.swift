@@ -46,6 +46,7 @@ class NetworkService: NetworkServiceProtocol {
     }
     
     func fetch<T: NetworkRequestProtocol>(_ request: T) async throws -> T.ResponseType {
+        print(request.endpoint.url)
         var urlRequest = URLRequest(url: request.endpoint.url)
         urlRequest.httpMethod = request.method.rawValue
         let data: T.ResponseType = try await withCheckedThrowingContinuation { [weak self] continuation in

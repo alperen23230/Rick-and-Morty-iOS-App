@@ -23,17 +23,23 @@ class LocationsViewModel {
     @LazyInjected private var networkService: NetworkService
     
     func getLocations() async {
+        guard !isLoadingPage && canLoadMorePages else {
+            return
+        }
+        isLoadingPage = true
         let request = LocationsRequest(name: currentSearchQuery, page: currentPage)
         do {
             let locationResponseModel = try await networkService.fetch(request)
             isLoadingPage = false
+            locationsSubject.value.append(contentsOf: locationResponseModel.results)
             if locationResponseModel.pageInfo.pageCount == currentPage {
                 canLoadMorePages = false
+                return
             }
             currentPage += 1
-            locationsSubject.value.append(contentsOf: locationResponseModel.results)
             isFirstLoadingPageSubject.value = false
         } catch {
+            #warning("TODO: Handle error")
             print(error.localizedDescription)
         }
     }

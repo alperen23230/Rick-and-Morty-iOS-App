@@ -28,7 +28,9 @@ class EpisodesViewController: UIViewController {
         setViewModelListeners()
         configureSearchController()
         setSearchControllerListeners()
-        episodesViewModel.getEpisodes()
+        Task {
+            await episodesViewModel.getEpisodes()
+        }
     }
     
     private func configureNavBar() {
@@ -37,16 +39,18 @@ class EpisodesViewController: UIViewController {
     }
     
     private func setViewModelListeners() {
-        Publishers.CombineLatest(episodesViewModel.isFirstLoadingPageSubject, episodesViewModel.episodesSubject).sink {[weak self] (isLoading, episodes) in
-            if isLoading {
-                self?.tableView.setLoading()
-            } else {
-                self?.tableView.restore()
-                self?.createSnapshot(from: episodes)
-                if episodes.isEmpty {
-                    self?.tableView.setEmptyMessage(message: "No episode found")
+        Publishers.CombineLatest(episodesViewModel.isFirstLoadingPageSubject, episodesViewModel.episodesSubject).sink { [weak self] (isLoading, episodes) in
+            DispatchQueue.main.async {
+                if isLoading {
+                    self?.tableView.setLoading()
                 } else {
                     self?.tableView.restore()
+                    self?.createSnapshot(from: episodes)
+                    if episodes.isEmpty {
+                        self?.tableView.setEmptyMessage(message: "No episode found")
+                    } else {
+                        self?.tableView.restore()
+                    }
                 }
             }
         }
@@ -92,7 +96,9 @@ extension EpisodesViewController: UITableViewDelegate {
         let scrollViewHeight = scrollView.frame.size.height
         
         if position > (tableViewContentSizeHeight - 100 - scrollViewHeight) {
-            episodesViewModel.getEpisodes()
+            Task {
+                await episodesViewModel.getEpisodes()
+            }
         }
     }
 }
@@ -111,24 +117,28 @@ extension EpisodesViewController: UISearchBarDelegate {
             }
             .debounce(for: 0.3, scheduler: DispatchQueue.main)
             .removeDuplicates()
-            .sink {[weak self] (searchQuery) in
-                self?.getEpisodesBySearchQuery(searchQuery: searchQuery ?? "")
+            .sink { (searchQuery) in
+                Task { [weak self] in
+                    await self?.getEpisodesBySearchQuery(searchQuery: searchQuery ?? "")
+                }
             }
             .store(in: &cancellables)
     }
     
-    private func getEpisodesBySearchQuery(searchQuery: String) {
+    private func getEpisodesBySearchQuery(searchQuery: String) async {
         episodesViewModel.currentSearchQuery = searchQuery
         episodesViewModel.canLoadMorePages = true
         episodesViewModel.currentPage = 1
         episodesViewModel.episodesSubject.value.removeAll()
-        episodesViewModel.getEpisodes()
+        await episodesViewModel.getEpisodes()
     }
     
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         if episodesViewModel.currentSearchQuery != "" {
-            getEpisodesBySearchQuery(searchQuery: "")
+            Task {
+               await getEpisodesBySearchQuery(searchQuery: "")
+            }
         }
     }
 }

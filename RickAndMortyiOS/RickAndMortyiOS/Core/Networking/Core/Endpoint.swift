@@ -35,21 +35,21 @@ extension Endpoint {
 extension Endpoint {
     static func getLocations(for name: String, page: Int) -> Self {
         Endpoint(
-            path: "/api/location/",
+            path: "api/location/",
             queryItems: [URLQueryItem(name: "page", value: String(page)),
                          URLQueryItem(name: "name", value: name)]
         )
     }
     static func getEpisodes(for name: String, page: Int) -> Self {
         Endpoint(
-            path: "/api/episode/",
+            path: "api/episode/",
             queryItems: [URLQueryItem(name: "page", value: String(page)),
                          URLQueryItem(name: "name", value: name)]
         )
     }
     static func getCharacters(name: String, status: String, gender: String, page: Int) -> Self {
         Endpoint(
-            path: "/api/character/",
+            path: "api/character/",
             queryItems: [
                 URLQueryItem(name: "page", value: String(page)),
                 URLQueryItem(name: "name", value: name),

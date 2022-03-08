@@ -10,7 +10,6 @@ import Combine
 import Resolver
 
 class EpisodesViewModel {
-    private var cancellables = Set<AnyCancellable>()
     private var isLoadingPage = false
     
     let isFirstLoadingPageSubject = CurrentValueSubject<Bool, Never>(true)
@@ -22,25 +21,28 @@ class EpisodesViewModel {
 
     @LazyInjected private var networkService: NetworkService
     
-    func getEpisodes() {
+    func getEpisodes() async {
         guard !isLoadingPage && canLoadMorePages else {
             return
         }
         isLoadingPage = true
-        networkService.getEpisodes(for: currentPage, filterByName: currentSearchQuery).sink {[weak self] (completion) in
-            if case .failure(let apiError) = completion {
-                self?.isLoadingPage = false
+        let request = EpisodesRequest(name: currentSearchQuery, page: currentPage)
+        do {
+            let episodeResponseModel = try await networkService.fetch(request)
+            isLoadingPage = false
+            episodesSubject.value.append(contentsOf: episodeResponseModel.results)
+            if episodeResponseModel.pageInfo.pageCount == currentPage {
+                canLoadMorePages = false
+                return
+            }
+            currentPage += 1
+            isFirstLoadingPageSubject.value = false
+        } catch {
+            #warning("TODO: Handle error")
+            if let apiError = error as? APIError {
                 print(apiError.errorMessage)
             }
-        } receiveValue: {[weak self] (episodeResponseModel) in
-            self?.isLoadingPage = false
-            if episodeResponseModel.pageInfo.pageCount == self?.currentPage {
-                self?.canLoadMorePages = false
-            }
-            self?.currentPage += 1
-            self?.episodesSubject.value.append(contentsOf: episodeResponseModel.results)
-            self?.isFirstLoadingPageSubject.value = false
+            print(error.localizedDescription)
         }
-        .store(in: &cancellables)
     }
 }

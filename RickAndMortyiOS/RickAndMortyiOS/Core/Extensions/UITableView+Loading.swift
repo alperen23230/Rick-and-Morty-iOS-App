@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension UITableView {
-    func setLoading(){
+    func setLoading() { 
         let activityIndicatorView = UIActivityIndicatorView(style: .medium)
         activityIndicatorView.color = .rickBlue
         self.backgroundView = activityIndicatorView
