@@ -46,6 +46,7 @@
 		8497E5192597384E00EA4687 /* CharacterFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497E5182597384E00EA4687 /* CharacterFilterViewController.swift */; };
 		84A1FAEC257D69BC003F2CCF /* CharactersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1FAEB257D69BC003F2CCF /* CharactersViewModel.swift */; };
 		84A1FAF1257D6DD7003F2CCF /* CharacterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1FAF0257D6DD6003F2CCF /* CharacterCollectionViewCell.swift */; };
+		84B10C9027DE237400962918 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = 84B10C8F27DE237400962918 /* TinyConstraints */; };
 		84C2FF512597170C0058C4BB /* UITableView+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C2FF502597170C0058C4BB /* UITableView+Loading.swift */; };
 		84C2FF56259725300058C4BB /* UICollectionView+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C2FF55259725300058C4BB /* UICollectionView+Loading.swift */; };
 		84DA09BC25989FD000A0B5A6 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA09BB25989FD000A0B5A6 /* CustomButton.swift */; };
@@ -188,6 +189,7 @@
 				84269EEB258E5674008E3F9A /* SDWebImageMapKit in Frameworks */,
 				848B760625B4A42400CDA0C9 /* Hero in Frameworks */,
 				847702F1256AB03A001CA8EE /* Resolver in Frameworks */,
+				84B10C9027DE237400962918 /* TinyConstraints in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,6 +515,7 @@
 				84269EEA258E5674008E3F9A /* SDWebImageMapKit */,
 				84DA09C12598AD3600A0B5A6 /* IQKeyboardManagerSwift */,
 				848B760525B4A42400CDA0C9 /* Hero */,
+				84B10C8F27DE237400962918 /* TinyConstraints */,
 			);
 			productName = RickAndMortyiOS;
 			productReference = 840814F4254D869C003655D2 /* RickAndMortyiOS.app */;
@@ -614,6 +617,7 @@
 				84269EE7258E5674008E3F9A /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				84DA09C02598AD3600A0B5A6 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				848B760425B4A42400CDA0C9 /* XCRemoteSwiftPackageReference "Hero" */,
+				84B10C8E27DE237400962918 /* XCRemoteSwiftPackageReference "TinyConstraints" */,
 			);
 			productRefGroup = 840814F5254D869C003655D2 /* Products */;
 			projectDirPath = "";
@@ -1144,6 +1148,14 @@
 				minimumVersion = 1.5.0;
 			};
 		};
+		84B10C8E27DE237400962918 /* XCRemoteSwiftPackageReference "TinyConstraints" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/roberthein/TinyConstraints";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		84DA09C02598AD3600A0B5A6 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
@@ -1174,6 +1186,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 848B760425B4A42400CDA0C9 /* XCRemoteSwiftPackageReference "Hero" */;
 			productName = Hero;
+		};
+		84B10C8F27DE237400962918 /* TinyConstraints */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84B10C8E27DE237400962918 /* XCRemoteSwiftPackageReference "TinyConstraints" */;
+			productName = TinyConstraints;
 		};
 		84DA09C12598AD3600A0B5A6 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;

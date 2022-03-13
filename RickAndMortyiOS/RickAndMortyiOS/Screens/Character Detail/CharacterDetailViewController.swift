@@ -57,7 +57,7 @@ class CharacterDetailViewController: UIViewController {
     
     private func configureImage () {
         characterImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        guard let imageURL = URL(string: character.imageURL) else { return }
+        guard let imageURL = URL(string: character.imageUrl) else { return }
         characterImageView.sd_setImage(with: imageURL)
         view.addSubview(characterImageView)
     }

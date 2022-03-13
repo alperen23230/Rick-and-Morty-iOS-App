@@ -25,11 +25,11 @@ struct Provider: TimelineProvider {
     let imageStore = ImageStore()
     
     func getSnapshot(in context: Context, completion: @escaping (CharacterEntry) -> Void) {
-        completion(CharacterEntry(date: Date(), character: RickAndMortyCharacter(id: 1, name: "asd", status: "", species: "", gender: "", imageURL: "", created: Date()), characterImage: UIImage()))
+        completion(CharacterEntry(date: Date(), character: RickAndMortyCharacter(id: 1, name: "asd", status: .dead, species: "", gender: "", imageUrl: "", created: Date()), characterImage: UIImage()))
     }
     
     func placeholder(in context: Context) -> CharacterEntry {
-        return CharacterEntry(date: Date(), character: RickAndMortyCharacter(id: 1, name: "asd", status: "", species: "", gender: "", imageURL: "", created: Date()), characterImage: UIImage())
+        return CharacterEntry(date: Date(), character: RickAndMortyCharacter(id: 1, name: "asd", status: .dead, species: "", gender: "", imageUrl: "", created: Date()), characterImage: UIImage())
     }
     
     
@@ -51,14 +51,14 @@ struct Provider: TimelineProvider {
             guard let data = data else { return }
             guard let characterData = try? decoder.decode(GeneralAPIResponse<RickAndMortyCharacter>.self, from: data) else { return }
             guard let randomCharacter = characterData.results.randomElement() else { return }
-            if let image = imageStore.retrieveImage(forKey: randomCharacter.imageURL) {
+            if let image = imageStore.retrieveImage(forKey: randomCharacter.imageUrl) {
                 // Image from cache
                 let entry = CharacterEntry(date: currentDate, character: randomCharacter, characterImage: image)
                 let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
                 completion(timeline)
             } else {
                 // Image from network call
-                getCharacterImageFromNetwork(urlString: randomCharacter.imageURL) { image in
+                getCharacterImageFromNetwork(urlString: randomCharacter.imageUrl) { image in
                     let entry = CharacterEntry(date: currentDate, character: randomCharacter, characterImage: image)
                     let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
                     completion(timeline)

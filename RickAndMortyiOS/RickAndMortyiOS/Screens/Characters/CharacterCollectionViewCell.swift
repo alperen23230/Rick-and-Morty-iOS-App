@@ -5,102 +5,85 @@
 //  Created by Alperen Ünal on 6.12.2020.
 //
 
-import Foundation
 import UIKit
 import SDWebImage
 import Hero
+import TinyConstraints
 
-class CharacterCollectionViewCell: UICollectionViewCell {
-    static let reuseIdentifier: String = "CharacterViewCell"
+final class CharacterCollectionViewCell: UICollectionViewCell {
+    static let reuseIdentifier: String = "CharacterCollectionViewCell"
     
-    @UsesAutoLayout
-    var characterImageView = UIImageView()
-    @UsesAutoLayout
-    var nameLabel = UILabel()
-    @UsesAutoLayout
-    var statusStackView = UIStackView()
-    @UsesAutoLayout
-    var statusLabel = UILabel()
-    @UsesAutoLayout
-    var statusImageView = UIImageView(image: SFSymbols.statusSymbol)
+    private let characterImageView = UIImageView()
+    private let nameLabel = UILabel()
+    private let labelsVerticalStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 4
+        stackView.alignment = .leading
+        return stackView
+    }()
+    private let statusHorizontalStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 4
+        stackView.alignment = .leading
+        stackView.alignment = .center
+        return stackView
+    }()
+    private let statusLabel = UILabel()
+    private let statusImageView = UIImageView(image: SFSymbols.statusSymbol)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        configureCell()
+        addSubviews()
+        configureContents()
     }
     
-    private func configureCell(){
-        contentView.layer.cornerRadius = 10.0
+    required init?(coder: NSCoder) {
+        fatalError("Just… no")
+    }
+    
+    private func addSubviews() {
+        contentView.addSubview(characterImageView)
+        characterImageView.edgesToSuperview(excluding: .bottom, insets: .left(8) + .right(8) + .top(8))
+        characterImageView.aspectRatio(1)
+        
+        contentView.addSubview(labelsVerticalStackView)
+        labelsVerticalStackView.topToBottom(of: characterImageView).constant = 8
+        labelsVerticalStackView.edgesToSuperview(excluding: [.top, .bottom], insets: .left(8) + .right(8))
+        
+        labelsVerticalStackView.addArrangedSubview(nameLabel)
+        labelsVerticalStackView.addArrangedSubview(statusHorizontalStackView)
+        
+        statusHorizontalStackView.addArrangedSubview(statusImageView)
+        statusImageView.size(.init(width: 8, height: 8))
+        statusHorizontalStackView.addArrangedSubview(statusLabel)
+    }
+    
+    private func configureContents() {
+        layer.cornerRadius = 10
+        clipsToBounds = true
         contentView.backgroundColor = .rickBlue
         
-        nameLabel.font = .preferredFont(forTextStyle: .subheadline)
-        nameLabel.adjustsFontSizeToFitWidth = true
-        nameLabel.lineBreakMode = .byTruncatingTail
+        nameLabel.font = .preferredFont(forTextStyle: .headline)
         nameLabel.textColor = .white
         
-        statusLabel.font = .preferredFont(forTextStyle: .footnote)
-        statusLabel.lineBreakMode = .byTruncatingTail
+        statusLabel.font = .preferredFont(forTextStyle: .callout)
+        statusLabel.adjustsFontSizeToFitWidth = true
         statusLabel.textColor = .secondaryLabel
         
-        characterImageView.layer.masksToBounds = true
-        characterImageView.layer.cornerRadius = 10.0
+        characterImageView.clipsToBounds = true
+        characterImageView.layer.cornerRadius = 10
         characterImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        
-        configureStatusStackView()
-        
-        
-        addSubview(characterImageView)
-        addSubview(nameLabel)
-        addSubview(statusStackView)
-        
-        configureAutoLayoutConstraints()
-    }
-    
-    private func configureStatusStackView() {
-        statusStackView.axis  = .horizontal
-        statusStackView.distribution  = .fillProportionally
-        statusStackView.alignment = .leading
-        statusStackView.spacing   = 4.0
-        
-        statusStackView.addArrangedSubview(statusImageView)
-        statusStackView.addArrangedSubview(statusLabel)
-    }
-    
-    private func configureAutoLayoutConstraints() {
-        let padding: CGFloat = 8
-        NSLayoutConstraint.activate([
-            characterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
-            characterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            characterImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            characterImageView.heightAnchor.constraint(equalTo: characterImageView.widthAnchor),
-            
-            nameLabel.topAnchor.constraint(equalTo: characterImageView.bottomAnchor, constant: padding),
-            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            nameLabel.heightAnchor.constraint(equalToConstant: 20),
-            
-            statusImageView.heightAnchor.constraint(equalToConstant: 8.0),
-            statusImageView.widthAnchor.constraint(equalToConstant: 8.0),
-            
-            statusStackView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
-            statusStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            statusStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            statusStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-        ])
     }
     
     func set(with character: RickAndMortyCharacter) {
         characterImageView.heroID = character.uuid.uuidString
         nameLabel.heroID = character.name
-        guard let imageURL = URL(string: character.imageURL) else { return }
-        characterImageView.sd_setImage(with: imageURL)
         nameLabel.text = character.name
-        statusImageView.tintColor = character.status == "Alive" ? .green : (character.status == "Dead" ? .red : .gray)
-        statusLabel.text = "\(character.status) - \(character.species)"
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("Just… no")
+        statusImageView.tintColor = character.statusColor
+        statusLabel.text = "\(character.status.rawValue) - \(character.species)"
+        guard let imageURL = URL(string: character.imageUrl) else { return }
+        characterImageView.sd_setImage(with: imageURL)
     }
 }
